@@ -1,0 +1,15 @@
+
+#btnDashboard, #btnProductos, #btnPedidos, #btnHistorial{
+    -fx-background-color: rgb(0, 54, 0);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    
+}
+ 
+.label{
+    
+} 
+
+.estiloEtiqueta{
+  -fx-text-fill: brown;    
+}
