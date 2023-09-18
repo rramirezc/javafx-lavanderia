@@ -28,12 +28,6 @@ public class App extends Application {
             scene = new Scene(login);
             stage.setScene(scene);
             stage.setTitle("Bienvenido al programa");
-            stage.heightProperty().addListener((ObservableValue<? extends Number> ov, Number t, Number t1) -> {
-               Alert alert = new Alert(Alert.AlertType.INFORMATION);
-               alert.setContentText("Inicial:::" + t + " Final:::" + t1);
-               alert.show();
-            });
-            
             stage.show();
         
         }catch(IOException ie){

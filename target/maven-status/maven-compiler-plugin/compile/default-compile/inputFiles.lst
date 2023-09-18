@@ -1,6 +1,7 @@
 D:\Dev\sw\git\cursos\javafx\javafx-lavanderia\src\main\java\sunat\gob\pe\lavanderia\controller\HistorialController.java
 D:\Dev\sw\git\cursos\javafx\javafx-lavanderia\src\main\java\sunat\gob\pe\lavanderia\model\dao\IAlumnoDao.java
 D:\Dev\sw\git\cursos\javafx\javafx-lavanderia\src\main\java\sunat\gob\pe\lavanderia\controller\PedidosController.java
+D:\Dev\sw\git\cursos\javafx\javafx-lavanderia\src\main\java\sunat\gob\pe\lavanderia\model\dao\impl\UsuarioDAOImpl.java
 D:\Dev\sw\git\cursos\javafx\javafx-lavanderia\src\main\java\sunat\gob\pe\lavanderia\controller\ProductosController.java
 D:\Dev\sw\git\cursos\javafx\javafx-lavanderia\src\main\java\sunat\gob\pe\lavanderia\model\entities\Usuario.java
 D:\Dev\sw\git\cursos\javafx\javafx-lavanderia\src\main\java\sunat\gob\pe\lavanderia\model\util\Conexion.java
@@ -9,6 +10,8 @@ D:\Dev\sw\git\cursos\javafx\javafx-lavanderia\src\main\java\sunat\gob\pe\lavande
 D:\Dev\sw\git\cursos\javafx\javafx-lavanderia\src\main\java\sunat\gob\pe\lavanderia\controller\MenuController.java
 D:\Dev\sw\git\cursos\javafx\javafx-lavanderia\src\main\java\sunat\gob\pe\lavanderia\controller\DashboardController.java
 D:\Dev\sw\git\cursos\javafx\javafx-lavanderia\src\main\java\module-info.java
+D:\Dev\sw\git\cursos\javafx\javafx-lavanderia\src\main\java\sunat\gob\pe\lavanderia\model\util\ConnectionPoolMySQL.java
 D:\Dev\sw\git\cursos\javafx\javafx-lavanderia\src\main\java\sunat\gob\pe\lavanderia\controller\LoginController.java
 D:\Dev\sw\git\cursos\javafx\javafx-lavanderia\src\main\java\sunat\gob\pe\lavanderia\App.java
 D:\Dev\sw\git\cursos\javafx\javafx-lavanderia\src\main\java\sunat\gob\pe\lavanderia\model\entities\Alumno.java
+D:\Dev\sw\git\cursos\javafx\javafx-lavanderia\src\main\java\sunat\gob\pe\lavanderia\model\dao\IUsuarioDao.java
