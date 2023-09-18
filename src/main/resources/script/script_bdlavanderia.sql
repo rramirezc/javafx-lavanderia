@@ -2,6 +2,13 @@ CREATE DATABASE bdlavanderia;
 
 USE bdlavanderia;
 
+CREATE TABLE TIPO_DOCUMENTO(
+tipo_documento CHAR(2) NOT NULL,
+descripcion_corta VARCHAR(30) NOT NULL,
+descripcion_larga VARCHAR(100) NOT NULL,
+CONSTRAINT tipo_documento_pk PRIMARY KEY (tipo_documento)
+);
+
 CREATE TABLE USUARIO (
 id_usuario BIGINT auto_increment NOT NULL,
 nombres VARCHAR(100) NOT NULL,
@@ -24,7 +31,8 @@ sexo CHAR(1) NOT NULL,
 telefono VARCHAR(20) NULL,
 email VARCHAR(100) NULL,
 direccion VARCHAR(100) NULL,
-CONSTRAINT cliente_pk PRIMARY KEY (tipo_documento,numero_documento)
+CONSTRAINT cliente_pk PRIMARY KEY (tipo_documento,numero_documento),
+CONSTRAINT tipo_documento_fk FOREIGN KEY (tipo_documento) REFERENCES TIPO_DOCUMENTO(tipo_documento)
 );
 
 CREATE TABLE TIPO_PRENDA(
@@ -50,3 +58,11 @@ CONSTRAINT cliente_fk FOREIGN KEY (tipo_documento,numero_documento) REFERENCES C
 CONSTRAINT usuario_fk FOREIGN KEY (id_usuario) REFERENCES USUARIO(id_usuario),
 CONSTRAINT tipo_prenda_fk FOREIGN KEY (id_tipo_prenda) REFERENCES TIPO_PRENDA(id_tipo_prenda)
 );
+
+INSERT INTO TIPO_DOCUMENTO(tipo_documento,descripcion_corta,descripcion_larga)VALUES
+('01','LIBRETA ELECTORAL O DNI','L.E / DNI'),
+('04','CARNET DE EXTRANJERIA','CARNET EXT.'),
+('06','REG. UNICO DE CONTRIBUYENTES','RUC'),
+('07','PASAPORTE','PASAPORTE'),
+('11','PART. DE NACIMIENTO-IDENTIDAD','P. NAC.'),
+('00','OTROS','OTROS');
