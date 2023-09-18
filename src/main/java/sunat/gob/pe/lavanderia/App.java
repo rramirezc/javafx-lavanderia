@@ -31,7 +31,7 @@ public class App extends Application {
             stage.heightProperty().addListener((ObservableValue<? extends Number> ov, Number t, Number t1) -> {
                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                alert.setContentText("Inicial:::" + t + " Final:::" + t1);
-               alert.show();                
+               alert.show();
             });
             
             stage.show();

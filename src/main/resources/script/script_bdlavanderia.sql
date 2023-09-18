@@ -14,7 +14,7 @@ id_usuario BIGINT auto_increment NOT NULL,
 nombres VARCHAR(100) NOT NULL,
 apellidos VARCHAR(100) NOT NULL,
 usuario VARCHAR(30) NOT NULL,
-password VARCHAR(30) NOT NULL,
+password BLOB NOT NULL,
 telefono VARCHAR(20) NULL,
 email VARCHAR(100) NULL,
 CONSTRAINT usuario_pk PRIMARY KEY (id_usuario)
@@ -59,10 +59,14 @@ CONSTRAINT usuario_fk FOREIGN KEY (id_usuario) REFERENCES USUARIO(id_usuario),
 CONSTRAINT tipo_prenda_fk FOREIGN KEY (id_tipo_prenda) REFERENCES TIPO_PRENDA(id_tipo_prenda)
 );
 
-INSERT INTO TIPO_DOCUMENTO(tipo_documento,descripcion_corta,descripcion_larga)VALUES
+INSERT INTO TIPO_DOCUMENTO(tipo_documento,descripcion_larga,descripcion_corta)VALUES
 ('01','LIBRETA ELECTORAL O DNI','L.E / DNI'),
 ('04','CARNET DE EXTRANJERIA','CARNET EXT.'),
 ('06','REG. UNICO DE CONTRIBUYENTES','RUC'),
 ('07','PASAPORTE','PASAPORTE'),
 ('11','PART. DE NACIMIENTO-IDENTIDAD','P. NAC.'),
 ('00','OTROS','OTROS');
+
+INSERT INTO USUARIO(id_usuario,nombres,apellidos,usuario,password,telefono,email)
+VALUES
+(0,'Juan Alberto','Perez Gonzales','jperez',aes_encrypt('Clave@125' ,'keyLavadanderia'),'925999999','jperez@lavanderia.com.pe');
