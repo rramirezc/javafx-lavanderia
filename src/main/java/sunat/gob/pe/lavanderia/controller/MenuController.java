@@ -11,47 +11,52 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import sunat.gob.pe.lavanderia.App;
 
-
 /**
  * FXML Controller class
  *
- * @author Aldo Malaver
+ * @author ovelarde
  */
-public class MenuController{
+public class MenuController {
 
-  @FXML
-  private Button btnDashboard;
-  
-  @FXML
-  private Button btnProductos;
-  
-  @FXML
-  private Button btnPedidos;
-  
-  @FXML
-  private Button btnHistorial;
-  
-  @FXML
-  public void cambiarDashboard(ActionEvent event) throws IOException{
-       Parent dashboard = App.loadFXML("dashboard");
-       App.scene.setRoot(dashboard);
-  }
-  
-  @FXML
-  public void cambiarProducto(ActionEvent event) throws IOException{
-       Parent productos = App.loadFXML("productos");
-       App.scene.setRoot(productos);
-  }
-  
-  @FXML
-  public void cambiarPedido(ActionEvent event) throws IOException{
-       Parent pedidos = App.loadFXML("pedidos");
-       App.scene.setRoot(pedidos);
-  }
-  
-  @FXML
-  public void cambiarHistorial(ActionEvent event) throws IOException{
-       Parent historial = App.loadFXML("historial");
-       App.scene.setRoot(historial);
-  }
+    @FXML
+    private Button btnDashboard;
+    @FXML
+    private Button btnUsuarios;
+    @FXML
+    private Button btnClientes;
+    @FXML
+    private Button btnSolicitud;
+    @FXML
+    private Button btnHistorial;
+
+    @FXML
+    public void cambiarDashboard(ActionEvent event) throws IOException {
+        Parent dashboard = App.loadFXML("dashboard");
+        App.scene.setRoot(dashboard);
+    }
+
+    @FXML
+    public void cambiarUsuarios(ActionEvent event) throws IOException {
+        Parent usuarios = App.loadFXML("usuarios");
+        App.scene.setRoot(usuarios);
+    }
+
+    @FXML
+    public void cambiarClientes(ActionEvent event) throws IOException {
+        Parent clientes = App.loadFXML("clientes");
+        App.scene.setRoot(clientes);
+    }
+
+    @FXML
+    public void cambiarSolicitud(ActionEvent event) throws IOException {
+        Parent solicitud = App.loadFXML("solicitud");
+        App.scene.setRoot(solicitud);
+    }
+
+    @FXML
+    public void cambiarHistorial(ActionEvent event) throws IOException {
+        Parent historial = App.loadFXML("historial");
+        App.scene.setRoot(historial);
+    }
+
 }

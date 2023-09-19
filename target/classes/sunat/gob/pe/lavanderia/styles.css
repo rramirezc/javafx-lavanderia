@@ -1,15 +1,10 @@
-
-#btnDashboard, #btnProductos, #btnPedidos, #btnHistorial{
-    -fx-background-color: rgb(0, 54, 0);
-    -fx-text-fill: white;
+#btnDashboard, #btnUsuarios, #btnClientes, #btnSolicitud, #btnHistorial{
+    -fx-background-color: darkblue;
+    -fx-text-fill: whitesmoke;
     -fx-font-weight: bold;
-    
-}
- 
-.label{
-    
-} 
 
-.estiloEtiqueta{
-  -fx-text-fill: brown;    
+}
+
+.estilosEtiqueta{
+    -fx-text-fill: darkblue;
 }

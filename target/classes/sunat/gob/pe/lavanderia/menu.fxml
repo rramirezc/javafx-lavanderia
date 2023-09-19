@@ -7,14 +7,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="120.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sunat.gob.pe.lavanderia.controller.MenuController">
-   <children>
-      <Button fx:id="btnDashboard" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarDashboard" prefHeight="31.0" prefWidth="100.0" text="Dashboard" />
-      <Button fx:id="btnProductos" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarProducto" prefHeight="31.0" prefWidth="100.0" text="Productos" />
-      <Button fx:id="btnPedidos" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarPedido" prefHeight="31.0" prefWidth="100.0" text="Pedidos" />
-      <Button fx:id="btnHistorial" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarHistorial" prefHeight="31.0" prefWidth="100.0" text="Historial" />
-   </children>
-   <padding>
-      <Insets left="10.0" top="10.0" />
-   </padding>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="150.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sunat.gob.pe.lavanderia.controller.MenuController">
+    <children>
+        <Button fx:id="btnDashboard" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarDashboard" prefHeight="35.0" prefWidth="130.0" text="Dashboard" />
+        <Button fx:id="btnUsuarios" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarUsuarios" prefHeight="35.0" prefWidth="130.0" text="Usuarios" />
+        <Button fx:id="btnClientes" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarClientes" prefHeight="35.0" prefWidth="130.0" text="Clientes" />
+        <Button fx:id="btnSolicitud" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarSolicitud" prefHeight="35.0" prefWidth="130.0" text="Solicitud" />
+        <Button fx:id="btnHistorial" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarHistorial" prefHeight="35.0" prefWidth="130.0" text="Historial" />
+    </children>
+    <padding>
+        <Insets left="10.0" top="10.0" />
+    </padding>
 </VBox>
