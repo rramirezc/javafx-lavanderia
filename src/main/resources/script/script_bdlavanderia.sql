@@ -70,3 +70,24 @@ INSERT INTO TIPO_DOCUMENTO(tipo_documento,descripcion_larga,descripcion_corta)VA
 INSERT INTO USUARIO(id_usuario,nombres,apellidos,usuario,password,telefono,email)
 VALUES
 (0,'Juan Alberto','Perez Gonzales','jperez',aes_encrypt('Clave@125' ,'keyLavadanderia'),'925999999','jperez@lavanderia.com.pe');
+
+INSERT INTO USUARIO(id_usuario,nombres,apellidos,usuario,password,telefono,email)
+VALUES
+(0,'Cristhian','Estrada Mori','cestrada',aes_encrypt('123' ,'keyLavadanderia'),'925999999','cestrada@lavanderia.com.pe');
+
+
+INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Algodón",100.00);
+INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Lino",200.00);
+INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Lana",300.00);
+INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Seda",400.00);
+INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Fibras orgánicas",500.00);
+INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Poliéster y nylon",600.00);
+INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Látex o spándex",700.00);
+INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Acetato, rayón y viscosa",800.00);
+INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Acrílico",900.00);
+
+insert into CLIENTE (tipo_documento,numero_documento,nombres,apellidos,fecha_nacimiento,sexo,telefono,email,direccion)
+values ('01',44508872,'Cristhian','Estrada',STR_TO_DATE('1987-07-17', '%Y-%m-%d'),'M',123456789,'cestradam@gmail.com','Direccion 1');
+
+insert into SOLICITUD (id_solicitud,tipo_documento,numero_documento,id_usuario,id_tipo_prenda,cantidad_prendas,peso,precio_total,fecha_solicitud,fecha_entrega)
+Values (0,'01',44508872,2,3,4,100,1200,STR_TO_DATE('2023-08-23', '%Y-%m-%d'),STR_TO_DATE('2023-10-23', '%Y-%m-%d'));

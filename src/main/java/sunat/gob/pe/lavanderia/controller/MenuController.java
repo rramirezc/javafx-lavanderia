@@ -28,6 +28,8 @@ public class MenuController {
     private Button btnSolicitud;
     @FXML
     private Button btnHistorial;
+    @FXML
+    private Button btnConsultas;
 
     @FXML
     public void cambiarDashboard(ActionEvent event) throws IOException {
@@ -56,6 +58,12 @@ public class MenuController {
     @FXML
     public void cambiarHistorial(ActionEvent event) throws IOException {
         Parent historial = App.loadFXML("historial");
+        App.scene.setRoot(historial);
+    }
+    
+    @FXML
+    public void cambiarConsultas(ActionEvent event) throws IOException {
+        Parent historial = App.loadFXML("consultas");
         App.scene.setRoot(historial);
     }
 
