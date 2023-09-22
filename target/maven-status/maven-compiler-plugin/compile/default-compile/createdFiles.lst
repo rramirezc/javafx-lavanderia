@@ -4,6 +4,8 @@ sunat\gob\pe\lavanderia\model\util\ConnectionPoolMySQL.class
 sunat\gob\pe\lavanderia\controller\DashboardController.class
 sunat\gob\pe\lavanderia\model\dao\IConsultaDao.class
 sunat\gob\pe\lavanderia\controller\LoginController.class
+sunat\gob\pe\lavanderia\model\entities\Documentos.class
+sunat\gob\pe\lavanderia\controller\ConsultasController$2.class
 sunat\gob\pe\lavanderia\controller\ProductosController.class
 module-info.class
 sunat\gob\pe\lavanderia\controller\PedidosController.class
@@ -23,5 +25,6 @@ sunat\gob\pe\lavanderia\model\entities\Consultas.class
 sunat\gob\pe\lavanderia\SystemInfo.class
 sunat\gob\pe\lavanderia\App.class
 sunat\gob\pe\lavanderia\model\util\Conexion.class
+sunat\gob\pe\lavanderia\controller\ConsultasController$1.class
 sunat\gob\pe\lavanderia\controller\MenuController.class
 sunat\gob\pe\lavanderia\controller\ConsultasController.class

@@ -26,7 +26,7 @@ public class App extends Application {
         try{
             Parent login = App.loadFXML("login");
             scene = new Scene(login);
-            stage.setScene(scene);
+            stage.setScene(scene);            
             stage.setTitle("Bienvenido al programa");
             stage.show();
         

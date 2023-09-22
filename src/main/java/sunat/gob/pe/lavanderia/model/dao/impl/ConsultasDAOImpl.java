@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import sunat.gob.pe.lavanderia.model.dao.IConsultaDao;
 import sunat.gob.pe.lavanderia.model.entities.Consultas;
+import sunat.gob.pe.lavanderia.model.entities.Documentos;
 import sunat.gob.pe.lavanderia.model.util.Conexion;
 import sunat.gob.pe.lavanderia.model.util.ConnectionPoolMySQL;
 
@@ -22,12 +23,17 @@ import sunat.gob.pe.lavanderia.model.util.ConnectionPoolMySQL;
 public class ConsultasDAOImpl implements IConsultaDao {
 
     @Override
-    public List<Consultas> listarConsulta() {
+    public List<Consultas> listarConsulta(String tpDocumento, String nrDocumento, int nroSolicitud, String nombres) {
 
         Connection connection = null;
         PreparedStatement pstmt = null;
         List<Consultas> listaConsulta = new ArrayList<>();
         ResultSet rs = null;
+
+        System.err.println("tpDocumento:" + tpDocumento);
+        System.err.println("nrDocumento:" + nrDocumento);
+        System.err.println("nroSolicitud:" + nroSolicitud);
+        System.err.println("nombres:" + nombres);
 
         try {
 
@@ -39,6 +45,28 @@ public class ConsultasDAOImpl implements IConsultaDao {
                     + " inner join TIPO_DOCUMENTO t on t.tipo_documento = s.tipo_documento "
                     + " inner join TIPO_PRENDA tp on tp.id_tipo_prenda = s.id_tipo_prenda "
                     + " where 0=0";
+
+            if (tpDocumento != null) {
+                sql += " and s.tipo_documento = " + tpDocumento;
+                if (nrDocumento != null) {
+                    if (nrDocumento.length() > 0) {
+                        sql += " and s.numero_documento = " + nrDocumento;
+                    }
+                }
+            }
+
+            if (nroSolicitud > 0) {
+                sql += " and s.id_solicitud = " + nroSolicitud;
+            }
+
+            if (nombres != null) {
+                if (nombres.length() > 0) {
+                    sql += " and UPPER(CONCAT(c.nombres,\" \",c.apellidos)) like UPPER('%" + nombres + "%')";
+                }
+            }
+
+            System.err.println("sql ->" + sql);
+
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
@@ -67,6 +95,46 @@ public class ConsultasDAOImpl implements IConsultaDao {
         }
 
         return listaConsulta;
+    }
+
+    @Override
+    public List<Documentos> listarDocumentos() {
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        List<Documentos> listaDocumentos = new ArrayList<>();
+        ResultSet rs = null;
+
+        try {
+
+            connection = ConnectionPoolMySQL.getInstance().getConnection();
+
+            String sql = "select tipo_documento ,descripcion_corta  from TIPO_DOCUMENTO";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                listaDocumentos.add(new Documentos(rs.getString(1), rs.getString(2)));
+            }
+
+        } catch (SQLException se) {
+            System.out.println(se.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    ConnectionPoolMySQL.getInstance().closeConnection(connection);
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException se) {
+                System.out.println(se.getMessage());
+            }
+        }
+
+        return listaDocumentos;
     }
 
 }
