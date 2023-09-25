@@ -70,3 +70,6 @@ INSERT INTO TIPO_DOCUMENTO(tipo_documento,descripcion_larga,descripcion_corta)VA
 INSERT INTO USUARIO(id_usuario,nombres,apellidos,usuario,password,telefono,email)
 VALUES
 (0,'Juan Alberto','Perez Gonzales','jperez',aes_encrypt('Clave@125' ,'keyLavadanderia'),'925999999','jperez@lavanderia.com.pe');
+
+ALTER TABLE USUARIO
+ADD CONSTRAINT usuario_unique_email UNIQUE KEY(email);

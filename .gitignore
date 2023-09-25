@@ -83,3 +83,21 @@ nb-configuration.xml
 ## OS X
 ##############################
 .DS_Store
+
+
+.classpath
+.project
+.settings/
+target/
+*/target/*
+*/target/**
+/target/**
+/.class
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
