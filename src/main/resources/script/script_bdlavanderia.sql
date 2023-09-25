@@ -75,6 +75,10 @@ INSERT INTO USUARIO(id_usuario,nombres,apellidos,usuario,password,telefono,email
 VALUES
 (0,'Cristhian','Estrada Mori','cestrada',aes_encrypt('123' ,'keyLavadanderia'),'925999999','cestrada@lavanderia.com.pe');
 
+INSERT INTO USUARIO(id_usuario,nombres,apellidos,usuario,password,telefono,email)
+VALUES
+(0,'Olenka','Velarde Vargas','ovelarde',aes_encrypt('1234' ,'keyLavadanderia'),'999999999','ovelarde@lavanderia.com.pe');
+
 
 INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Algodón",100.00);
 INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Lino",200.00);

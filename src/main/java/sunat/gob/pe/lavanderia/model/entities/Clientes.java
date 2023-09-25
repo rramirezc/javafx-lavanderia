@@ -21,7 +21,8 @@ public class Clientes {
     private StringProperty numero_documento;
     private StringProperty nombres;
     private StringProperty apellidos;
-    private ObjectProperty<Date> fecha_nacimiento;
+    private StringProperty fecha_nacimiento;
+   // private ObjectProperty<Date> fecha_nacimiento;
     private StringProperty sexo;
     private StringProperty telefono;
     private StringProperty email;
@@ -30,12 +31,13 @@ public class Clientes {
     public Clientes() {
     }
 
-    public Clientes(String tipo_documento, String numero_documento, String nombres, String apellidos, Date fecha_nacimiento, String sexo, String telefono, String email, String direccion) {
+    public Clientes(String tipo_documento, String numero_documento, String nombres, String apellidos, String fecha_nacimiento, String sexo, String telefono, String email, String direccion) {
         this.tipo_documento = new SimpleStringProperty(tipo_documento);
         this.numero_documento = new SimpleStringProperty(numero_documento);
         this.nombres = new SimpleStringProperty(nombres);
         this.apellidos = new SimpleStringProperty(apellidos);
-        this.fecha_nacimiento = new SimpleObjectProperty<>();
+       // this.fecha_nacimiento = new SimpleObjectProperty<>(fecha_nacimiento);
+       this.fecha_nacimiento = new SimpleStringProperty(fecha_nacimiento);
         this.sexo = new SimpleStringProperty(sexo);
         this.telefono = new SimpleStringProperty(telefono);
         this.email = new SimpleStringProperty(email);
@@ -106,19 +108,19 @@ public class Clientes {
         this.apellidos = apellidos;
     }
 
-    public Date getFecha_nacimiento() {
+    public String getFecha_nacimiento() {
         return fecha_nacimiento.get();
     }
 
-    public void setFecha_nacimiento(Date fecha_nacimiento) {
+    public void setFecha_nacimiento(String fecha_nacimiento) {
         this.fecha_nacimiento.set(fecha_nacimiento);
     }
 
-    public ObjectProperty<Date> getFecha_nacimiento1() {
+    public StringProperty getFecha_nacimiento1() {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento1(ObjectProperty<Date> fecha_nacimiento) {
+    public void setFecha_nacimiento1(StringProperty fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 

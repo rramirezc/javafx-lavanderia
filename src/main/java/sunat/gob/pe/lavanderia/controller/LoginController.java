@@ -4,6 +4,7 @@
  */
 package sunat.gob.pe.lavanderia.controller;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import sunat.gob.pe.lavanderia.App;
 import sunat.gob.pe.lavanderia.model.dao.IAlumnoDao;
 import sunat.gob.pe.lavanderia.model.dao.IUsuarioDao;
@@ -89,5 +91,11 @@ public class LoginController {
     
     return resultado;
   }
+  
+  public void ejecutarEnter(javafx.scene.input.KeyEvent keyEvent) throws IOException{
+        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+            autenticarUsuario(new ActionEvent());
+        }
+    }
 
 }
