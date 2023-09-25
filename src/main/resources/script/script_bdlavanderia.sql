@@ -91,13 +91,13 @@ INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Acetato, 
 INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Acrílico",900.00);
 
 insert into CLIENTE (tipo_documento,numero_documento,nombres,apellidos,fecha_nacimiento,sexo,telefono,email,direccion)
-values ('01',44508872,'Cristhian','Estrada',STR_TO_DATE('1987-07-17', '%Y-%m-%d'),'M',123456789
+values ('01',44508872,'Cristhian','Estrada',STR_TO_DATE('1987-07-17', '%Y-%m-%d'),'M',123456789,'cestradam@gmail.com','Direccion 1');
 insert into CLIENTE (tipo_documento,numero_documento,nombres,apellidos,fecha_nacimiento,sexo,telefono,email,direccion)
 values ('07',12345678,'Fulano','Mengano',STR_TO_DATE('1987-07-17', '%Y-%m-%d'),'M',123456789,'cestradam@gmail.com','Direccion 1');
 insert into CLIENTE (tipo_documento,numero_documento,nombres,apellidos,fecha_nacimiento,sexo,telefono,email,direccion)
 values ('04',77777777,'Bob','Esponja',STR_TO_DATE('1987-07-17', '%Y-%m-%d'),'M',123456789,'cestradam@gmail.com','Direccion 1');
 
-,'cestradam@gmail.com','Direccion 1');
+
 
 insert into SOLICITUD (id_solicitud,tipo_documento,numero_documento,id_usuario,id_tipo_prenda,cantidad_prendas,peso,precio_total,fecha_solicitud,fecha_entrega)
 Values (0,'01',44508872,2,3,4,100,1200,STR_TO_DATE('2023-08-23', '%Y-%m-%d'),STR_TO_DATE('2023-10-23', '%Y-%m-%d'));
