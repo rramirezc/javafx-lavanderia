@@ -1,6 +1,5 @@
 package sunat.gob.pe.lavanderia.controller;
 
-import animatefx.animation.FadeIn;
 import animatefx.animation.ZoomIn;
 import java.io.IOException;
 import java.net.URL;
@@ -24,7 +23,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
-import javafx.stage.PopupWindow;
 import sunat.gob.pe.lavanderia.App;
 import sunat.gob.pe.lavanderia.controller.service.MailService;
 import sunat.gob.pe.lavanderia.model.dao.IUsuarioDao;

@@ -1,4 +1,4 @@
-#btnDashboard, #btnUsuarios, #btnClientes, #btnSolicitud, #btnHistorial{
+#btnDashboard, #btnUsuarios, #btnClientes, #btnSolicitud, #btnHistorial, #btnConsultas{
     -fx-background-color: darkblue;
     -fx-text-fill: whitesmoke;
     -fx-font-weight: bold;
