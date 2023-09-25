@@ -203,6 +203,7 @@ public class LoginController implements Initializable {
     Matcher mather = pattern.matcher(email);
     if (!mather.find()) {
       mostrarAlertas("Datos Incorrectos", "Formato de correo inválido", Alert.AlertType.ERROR);
+      return false;
     }
 
     return true;
