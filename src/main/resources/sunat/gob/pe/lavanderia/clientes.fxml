@@ -32,15 +32,15 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Label text="Tipo Documento" />
-                                <Label text="Número Documento" GridPane.rowIndex="1" />
-                                <Label text="Fecha Nacimiento" GridPane.rowIndex="2" />
-                                <Label text="Teléfono" GridPane.rowIndex="3" />
-                                <Label text="Dirección" GridPane.rowIndex="4" />
-                                <Label text="Nombres" GridPane.columnIndex="2" />
-                                <Label text="Apellidos" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                <Label text="Sexo" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                <Label text="E-mail" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                <Label text="Tipo Documento" textFill="#6f4cbb" />
+                                <Label text="Número Documento" textFill="#6f4cbb" GridPane.rowIndex="1" />
+                                <Label text="Fecha Nacimiento" textFill="#6f4cbb" GridPane.rowIndex="2" />
+                                <Label text="Teléfono" textFill="#6f4cbb" GridPane.rowIndex="3" />
+                                <Label text="Dirección" textFill="#6f4cbb" GridPane.rowIndex="4" />
+                                <Label text="Nombres" textFill="#6f4cbb" GridPane.columnIndex="2" />
+                                <Label text="Apellidos" textFill="#6f4cbb" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                <Label text="Sexo" textFill="#6f4cbb" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                <Label text="E-mail" textFill="#6f4cbb" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                 <TextField fx:id="txtNumeroDocumento" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="190.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <TextField fx:id="txtTelefono" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="190.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                 <TextField fx:id="txtDireccion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="190.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -59,15 +59,14 @@
                         </GridPane>
                         <TableView fx:id="clientesTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="143.0" prefWidth="790.0">
                             <columns>
-                        <TableColumn fx:id="tipoDocumentoColumn" prefWidth="44.0" text="Tipo" />
-                                <TableColumn fx:id="numDocColumn" prefWidth="102.0" text="Num_Doc" />
-                                <TableColumn fx:id="nombreColumn" prefWidth="104.0" text="Nombre" />
-                                <TableColumn fx:id="apellidoColumn" prefWidth="114.0" text="Apellido" />
-                        <TableColumn fx:id="fechaNacimientoColumn" prefWidth="91.0" text="Fecha" />
-                                <TableColumn fx:id="telefonoColumn" prefWidth="93.0" text="Telefono" />
-                        <TableColumn fx:id="sexoColumn" prefWidth="69.0" text="Sexo" />
-                        <TableColumn fx:id="direccionColumn" prefWidth="86.0" text="Dirección" />
-                                <TableColumn fx:id="emailColumn" prefWidth="86.0" text="Email" />
+                                <TableColumn fx:id="numDocColumn" prefWidth="120.0" text="Num_Doc" />
+                                <TableColumn fx:id="nombreColumn" prefWidth="99.0" text="Nombre" />
+                                <TableColumn fx:id="apellidoColumn" prefWidth="117.0" text="Apellido" />
+                        <TableColumn fx:id="fechaNacimientoColumn" prefWidth="88.0" text="Fecha" />
+                                <TableColumn fx:id="telefonoColumn" prefWidth="92.0" text="Telefono" />
+                        <TableColumn fx:id="sexoColumn" text="Sexo" />
+                        <TableColumn fx:id="direccionColumn" prefWidth="98.0" text="Dirección" />
+                                <TableColumn fx:id="emailColumn" prefWidth="95.0" text="Email" />
                             </columns>
                         </TableView>
                     </children>
