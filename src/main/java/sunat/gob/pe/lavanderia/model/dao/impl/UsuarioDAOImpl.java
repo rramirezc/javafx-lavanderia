@@ -13,12 +13,12 @@ import sunat.gob.pe.lavanderia.model.util.ConnectionPoolMySQL;
 public class UsuarioDAOImpl implements IUsuarioDao {
 
   @Override
-  public boolean login(String user, String password) {
+  public Usuario login(String user, String password) {
 
     Connection connection = null;
     PreparedStatement pst;
     ResultSet rs;
-    boolean state = false;
+    Usuario usuarioBean = null;
 
     try {
 
@@ -36,7 +36,15 @@ public class UsuarioDAOImpl implements IUsuarioDao {
         rs = pst.executeQuery();
 
         if (rs.next()) {
-          state = true;
+          usuarioBean = new Usuario();
+          usuarioBean.setIdUsuario(rs.getLong(1));
+          usuarioBean.setNombres(rs.getString(2));
+          usuarioBean.setApellidos(rs.getString(3));
+          usuarioBean.setUsuario(rs.getString(4));
+          usuarioBean.setPassword("");
+          usuarioBean.setTelefono(rs.getString(6));
+          usuarioBean.setEmail(rs.getString(7));
+          usuarioBean.setEstado(rs.getString(8));
         }
 
       } else {
@@ -47,7 +55,6 @@ public class UsuarioDAOImpl implements IUsuarioDao {
       JOptionPane.showMessageDialog(null, "Hubo un error de ejecución, posibles errores:\n"
               + ex.getMessage());
     } finally {
-
       try {
         if (connection != null) {
           ConnectionPoolMySQL.getInstance().closeConnection(connection);
@@ -55,15 +62,14 @@ public class UsuarioDAOImpl implements IUsuarioDao {
       } catch (SQLException ex) {
         System.err.println(ex.getMessage());
       }
-
     }
 
-    return state;
+    return usuarioBean;
 
   }
 
   @Override
-  public boolean cambiarClave(String email, String newPasswod) {
+  public boolean cambiarClave(String email, String newPasswod, String estado) {
     Connection connection = null;
     PreparedStatement pst = null;
     int rs;
@@ -75,12 +81,13 @@ public class UsuarioDAOImpl implements IUsuarioDao {
 
       if (connection != null) {
 
-        String sql = "UPDATE USUARIO SET password = aes_encrypt(? ,'keyLavadanderia') WHERE email  = ? ";
+        String sql = "UPDATE USUARIO SET password = aes_encrypt(? ,'keyLavadanderia'), estado=? WHERE email  = ? ";
         System.out.println("SQL: " + sql);
 
         pst = connection.prepareStatement(sql);
         pst.setString(1, newPasswod);
-        pst.setString(2, email);
+        pst.setString(2, estado);
+        pst.setString(3, email);
         System.out.println("SQL1: " + pst.toString());
         rs = pst.executeUpdate();
         System.out.println("Resultado: " + rs);
@@ -142,8 +149,8 @@ public class UsuarioDAOImpl implements IUsuarioDao {
           usuarioBean.setPassword("");
           usuarioBean.setTelefono(rs.getString(6));
           usuarioBean.setEmail(rs.getString(7));
+          usuarioBean.setEstado(rs.getString(8));
         }
-
       } else {
         JOptionPane.showMessageDialog(null, "Hubo un error al conectarse con la base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
       }
@@ -218,6 +225,57 @@ public class UsuarioDAOImpl implements IUsuarioDao {
     }
 
     return usuarioBean;
+  }
+  
+  @Override
+  public boolean cambiarClaveById(String usuario, String newPasswod, String estado) {
+    Connection connection = null;
+    PreparedStatement pst = null;
+    int rs;
+    boolean state = false;
+
+    try {
+
+      connection = ConnectionPoolMySQL.getInstance().getConnection();
+
+      if (connection != null) {
+
+        String sql = "UPDATE USUARIO SET password = aes_encrypt(? ,'keyLavadanderia'), estado=? WHERE usuario  = ? ";
+        System.out.println("SQL: " + sql);
+
+        pst = connection.prepareStatement(sql);
+        pst.setString(1, newPasswod);
+        pst.setString(2, estado);
+        pst.setString(3, usuario);
+        System.out.println("SQL1: " + pst.toString());
+        rs = pst.executeUpdate();
+        System.out.println("Resultado: " + rs);
+        if (rs > 0) {
+          state = true;
+        }
+      } else {
+        JOptionPane.showMessageDialog(null, "Hubo un error al conectarse con la base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+      }
+
+    } catch (HeadlessException | SQLException ex) {
+      JOptionPane.showMessageDialog(null, "Hubo un error de ejecución, posibles errores:\n"
+              + ex.getMessage());
+    } finally {
+
+      try {
+        if (connection != null) {
+          ConnectionPoolMySQL.getInstance().closeConnection(connection);
+        }
+        if (pst != null) {
+          pst.close();
+        }
+      } catch (SQLException ex) {
+        System.err.println(ex.getMessage());
+      }
+
+    }
+
+    return state;
   }
 
 }

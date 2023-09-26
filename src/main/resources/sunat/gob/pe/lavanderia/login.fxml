@@ -94,6 +94,46 @@
                 </GridPane>
               </children>
             </Pane>
+                  <Pane fx:id="pnlFormCambio" layoutX="10.0" layoutY="10.0" onKeyPressed="#handleKeyPressedCambio" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFF;">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="81.0" layoutY="27.0" text="Cambio de Clave" textAlignment="CENTER" textFill="#6f4cbb">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <GridPane layoutX="27.0" layoutY="80.0" prefHeight="270.0" prefWidth="255.0" vgap="10.0">
+                           <children>
+                              <Label text="Nueva Clave" textFill="#6f4cbb" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                              <Label text="Clave Actual" textFill="#6f4cbb" GridPane.halignment="LEFT" />
+                              <PasswordField fx:id="txtPasswordNuevo" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Ingrese password" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
+                              <Button fx:id="btnCambiar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="100.0" styleClass="btnIniciar" stylesheets="@styles.css" text="Cambiar" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btnCloseClave" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" opacity="0.6" prefHeight="39.0" prefWidth="100.0" styleClass="btnClose" stylesheets="@styles.css" text="Salir" GridPane.rowIndex="7" />
+                              <Label text="Confirme Clave" textFill="#6f4cbb" GridPane.rowIndex="4" />
+                              <PasswordField fx:id="txtPasswordNuevoRep" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Ingrese password" GridPane.rowIndex="5" />
+                              <PasswordField fx:id="txtPasswordActual" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Ingrese password" GridPane.rowIndex="1" />
+                           </children>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="44.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="44.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="44.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="44.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="44.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="44.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="44.0" minHeight="10.0" prefHeight="44.0" valignment="CENTER" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                     </children>
+                  </Pane>
           </children>
         </StackPane>
       </center>

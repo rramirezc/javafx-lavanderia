@@ -8,7 +8,8 @@ public class Usuario {
   private String password;
   private String telefono;
   private String email;
-  
+  private String estado;
+
   public Long getIdUsuario() {
     return idUsuario;
   }
@@ -64,6 +65,17 @@ public class Usuario {
   public void setEmail(String email) {
     this.email = email;
   }
-
   
+  public String getEstado() {
+    return estado;
+  }
+
+  public void setEstado(String estado) {
+    this.estado = estado;
+  }
+
+  @Override
+  public String toString() {
+    return "Usuario{" + "idUsuario=" + idUsuario + ", nombres=" + nombres + ", apellidos=" + apellidos + ", usuario=" + usuario + ", password=" + password + ", telefono=" + telefono + ", email=" + email + ", estado=" + estado + '}';
+  }
 }
