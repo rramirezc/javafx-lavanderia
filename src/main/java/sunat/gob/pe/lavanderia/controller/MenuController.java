@@ -57,6 +57,15 @@ public class MenuController {
         Window window = App.scene.getWindow();
         window.setWidth(1000);
         window.setHeight(450);
+        
+        
+        /*
+        window.setWidth(1280.0);
+        window.setHeight(800.0);
+        window.setX(120.0);
+        window.setY(10.0);
+        */     
+        
     }
 
     @FXML

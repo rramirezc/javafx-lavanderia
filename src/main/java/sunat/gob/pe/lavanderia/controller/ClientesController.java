@@ -39,8 +39,8 @@ public class ClientesController implements Initializable {
 
     @FXML
     private TableView<Clientes> clientesTable;
-    @FXML
-    private TableColumn<Clientes, String> tipoDocumentoColumn;
+    //@FXML
+    //private TableColumn<Clientes, String> tipoDocumentoColumn;
     @FXML
     private TableColumn<Clientes, String> numDocColumn;
     @FXML
@@ -90,7 +90,7 @@ public class ClientesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         enlazarTabla();
-        llenarDatosEnTabla();
+                llenarDatosEnTabla();
         seleccionarElementosDeTabla();
 
     }
@@ -133,7 +133,7 @@ public class ClientesController implements Initializable {
         
         //inmueble.setFecharegistro2(((LocalDate)this.dpFecha.getValue()).toString());
 
-        tipoDocumentoColumn.setCellValueFactory(rowData -> rowData.getValue().getTipo_documento1());
+       // tipoDocumentoColumn.setCellValueFactory(rowData -> rowData.getValue().getTipo_documento1());
         numDocColumn.setCellValueFactory(rowData -> rowData.getValue().getNumero_documento1());
         nombreColumn.setCellValueFactory(rowData -> rowData.getValue().getNombres1());
         apellidoColumn.setCellValueFactory(rowData -> rowData.getValue().getApellidos1());
@@ -146,8 +146,10 @@ public class ClientesController implements Initializable {
     }
 
     private void llenarDatosEnTabla() {
+        
         IClientesDao clientesDao = new ClientesDaoImpl();
         clientesData.addAll(clientesDao.listarClientes());
+        
     }
 
     private void seleccionarElementosDeTabla() {
@@ -161,7 +163,7 @@ public class ClientesController implements Initializable {
                         return "Guardar";
                     }
                     System.out.println("Entro a actualizae");
-                    return "Actualizar";
+                    return "Guardar";
                 }
             };
             btnGuardar.textProperty().bind(btnGuardarText);
@@ -206,7 +208,9 @@ public class ClientesController implements Initializable {
             IClientesDao clientesDao = new ClientesDaoImpl();
             clientesDao.guardarClientes(clientesActual);
             mostrarAlertas("Informacion", "Se guardo exitosamente", Alert.AlertType.INFORMATION);
+            limpiarTabla();
             llenarDatosEnTabla();
+            
         }
     }
 
@@ -216,8 +220,10 @@ public class ClientesController implements Initializable {
         dialogo.setContentText(content);
         dialogo.show();
     }
+    
+    private void limpiarTabla() {
+        clientesTable.getItems().clear();
+    }
 }
-   // private void limpiarTabla() {
-     //   clientesTable.getItems().clear();
-    //}
+    
 

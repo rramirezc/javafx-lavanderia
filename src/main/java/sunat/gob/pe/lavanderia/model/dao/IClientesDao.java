@@ -18,10 +18,10 @@ public interface IClientesDao {
 
     List<Clientes> listarClientes();
 
-    Clientes buscarClientesPorId(String tipo_documento, String numero_documento);
+   // Clientes buscarClientesPorId(String tipo_documento, String numero_documento);
 
-    void actualizarClientes(Clientes clientes);
+   // void actualizarClientes(Clientes clientes);
 
-    void eliminarClientes(String tipo_documento, String numero_documento);
-    List<Documentos> listarDocumentos();
+    //void eliminarClientes(String tipo_documento, String numero_documento);
+    //List<Documentos> listarDocumentos();
 }

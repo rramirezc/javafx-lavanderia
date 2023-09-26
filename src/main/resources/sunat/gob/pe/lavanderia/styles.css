@@ -82,3 +82,19 @@
   -fx-background-color: #D5CBEB;
   -fx-text-fill: #330099;
 }
+#btnGuardar{
+  -fx-background-color: #D5CBEB;
+  -fx-background-radius: 5;
+  -fx-text-fill: #371897;
+  -fx-border-color: #6F4CBB;
+  -fx-border-radius: 5;
+}
+#btnGuardar:hover{
+  -fx-text-fill: #330099;
+  -fx-font-weight: bold;
+  -fx-cursor: hand;
+}
+#btnGuardar:pressed{
+  -fx-background-color: #D5CBEB;
+  -fx-text-fill: #330099;
+}
