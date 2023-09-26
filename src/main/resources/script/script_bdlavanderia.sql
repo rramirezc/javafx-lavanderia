@@ -73,6 +73,7 @@ VALUES
 
 ALTER TABLE USUARIO
 ADD CONSTRAINT usuario_unique_email UNIQUE KEY(email);
+
 INSERT INTO USUARIO(id_usuario,nombres,apellidos,usuario,password,telefono,email)
 VALUES
 (0,'Cristhian','Estrada Mori','cestrada',aes_encrypt('123' ,'keyLavadanderia'),'925999999','cestrada@lavanderia.com.pe');
@@ -109,3 +110,6 @@ Values (0,'07',12345678,2,3,6,200,4000,STR_TO_DATE('2023-08-23', '%Y-%m-%d'),STR
 
 insert into SOLICITUD (id_solicitud,tipo_documento,numero_documento,id_usuario,id_tipo_prenda,cantidad_prendas,peso,precio_total,fecha_solicitud,fecha_entrega)
 Values (0,'04',77777777,2,10,11,400,1200,STR_TO_DATE('2023-08-23', '%Y-%m-%d'),STR_TO_DATE('2023-10-23', '%Y-%m-%d'));
+
+ALTER TABLE USUARIO
+ADD COLUMN estado CHAR(1) NOT NULL DEFAULT '1' AFTER email; -- 0-INACTIVO,1-ACTIVO,2-BLOQUEADO/EN_RECUPERACION,3-BAJA,4-ELIMINADO

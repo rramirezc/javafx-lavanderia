@@ -23,18 +23,23 @@ import sunat.gob.pe.lavanderia.model.util.ConnectionPoolMySQL;
  * @author ovelarde
  */
 public class ClientesDaoImpl implements IClientesDao {
-    
+
     @Override
     public void guardarClientes(Clientes clientes) {
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.getConexion();
+        Connection connection = null;
         PreparedStatement pstmt = null;
-        try {
+        ResultSet rs = null;
+        //Conexion conexion = new Conexion();
+        //Connection conn = conexion.getConexion();
+        //PreparedStatement pstmt = null;
 
-            String sql = "Insert into Cliente(tipo_documento, numero_documento, nombres, apellidos, fecha_nacimiento, "
+        try {
+            connection = ConnectionPoolMySQL.getInstance().getConnection();
+            String sql = "Insert into CLIENTE(tipo_documento, numero_documento, nombres, apellidos, fecha_nacimiento, "
                     + "sexo, telefono, email, direccion) VALUES(?,?,?,?,?,?,?,?,?)";
 
-            pstmt = conn.prepareStatement(sql);
+            //pstmt = conn.prepareStatement(sql);
+            pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, clientes.getTipo_documento());
             pstmt.setString(2, clientes.getNumero_documento());
             pstmt.setString(3, clientes.getNombres());
@@ -52,32 +57,36 @@ public class ClientesDaoImpl implements IClientesDao {
         } catch (SQLException se) {
             System.out.println(se.getMessage());
         } finally {
+
             try {
-                if (conn != null) {
-                    conn.close();
+                if (connection != null) {
+                    ConnectionPoolMySQL.getInstance().closeConnection(connection);
                 }
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-            } catch (SQLException se) {
-                System.out.println(se.getMessage());
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
             }
+
         }
     }
 
     @Override
     public List<Clientes> listarClientes() {
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.getConexion();
+        Connection connection = null;
         PreparedStatement pstmt = null;
         List<Clientes> listaClientes = new ArrayList<>();
         ResultSet rs = null;
-                
-        try {
+        //Conexion conexion = new Conexion();
+        //Connection conn = conexion.getConexion();
+        //PreparedStatement pstmt = null;
+        //List<Clientes> listaClientes = new ArrayList<>();
+        //ResultSet rs = null;
 
+        try {
+            connection = ConnectionPoolMySQL.getInstance().getConnection();
             String sql = "Select tipo_documento, numero_documento, nombres, apellidos, "
-                    + "fecha_nacimiento,sexo, telefono, email, direccion from Cliente";
-            pstmt = conn.prepareStatement(sql);
+                    + "fecha_nacimiento,sexo, telefono, email, direccion from CLIENTE";
+            //pstmt = conn.prepareStatement(sql);
+            pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -93,8 +102,8 @@ public class ClientesDaoImpl implements IClientesDao {
             System.out.println(se.getMessage());
         } finally {
             try {
-                if (conn != null) {
-                    conn.close();
+                if (connection != null) {
+                    ConnectionPoolMySQL.getInstance().closeConnection(connection);
                 }
                 if (pstmt != null) {
                     pstmt.close();
@@ -109,7 +118,7 @@ public class ClientesDaoImpl implements IClientesDao {
 
         return listaClientes;
     }
-
+/*
     @Override
     public Clientes buscarClientesPorId(String tipo_documento, String numero_documento) {
         Conexion conexion = new Conexion();
@@ -160,7 +169,7 @@ public class ClientesDaoImpl implements IClientesDao {
         PreparedStatement pstmt = null;
         try {
 
-            String sql = "Update Cliente set nombres = ?, apellidos = ?,fecha_nacimiento = ?,sexo = ?, telefono = ?, "
+            String sql = "Update CLIENTE set nombres = ?, apellidos = ?,fecha_nacimiento = ?,sexo = ?, telefono = ?, "
                     + "email = ?, direccion = ? where tipo_documento = ?, numero_documento = ?,";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, clientes.getNombres());
@@ -199,7 +208,7 @@ public class ClientesDaoImpl implements IClientesDao {
         PreparedStatement pstmt = null;
         try {
 
-            String sql = "Delete Cliente where tipo_documento = ?, numero_documento = ?,";
+            String sql = "Delete CLIENTE where tipo_documento = ?, numero_documento = ?,";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, tipo_documento);
             pstmt.setString(2, numero_documento);
@@ -261,6 +270,6 @@ public class ClientesDaoImpl implements IClientesDao {
 
         return listaDocumentos;
     }
-    
-    
+*/
+
 }

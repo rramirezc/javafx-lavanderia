@@ -5,8 +5,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * JavaFX App
@@ -14,6 +14,7 @@ import javafx.stage.StageStyle;
 public class App extends Application {
 
   public static Scene scene;
+  public static Stage primaryStage;
 
   @Override
   public void start(Stage stage) {
@@ -25,10 +26,13 @@ public class App extends Application {
       stage.setScene(scene);
       new animatefx.animation.FadeIn(login).play();
       stage.setTitle("Bienvenido al programa");
+      Image icon = new Image(getClass().getResourceAsStream("logo.jpg"));
+      stage.getIcons().add(icon);
       stage.show();
-
+      primaryStage = stage;
     } catch (IOException ie) {
       System.out.println(ie.getMessage());
+      ie.printStackTrace();
     }
 
   }
