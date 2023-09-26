@@ -84,7 +84,7 @@ public class MenuController {
 
         Window window = App.scene.getWindow();
         window.setWidth(1000);
-        window.setHeight(450);
+        window.setHeight(500);
     }
 
 }

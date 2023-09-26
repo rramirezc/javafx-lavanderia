@@ -8,28 +8,36 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="432.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sunat.gob.pe.lavanderia.controller.ConsultasController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="432.0" prefWidth="734.0" styleClass="style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sunat.gob.pe.lavanderia.controller.ConsultasController">
    <children>
       <fx:include source="menu.fxml" />
-      <ScrollPane layoutX="150.0" layoutY="-2.0" prefHeight="446.0" prefWidth="838.0">
+      <ScrollPane layoutX="150.0" layoutY="-2.0" prefHeight="446.0" prefWidth="815.0">
          <content>
-            <VBox prefHeight="447.0" prefWidth="838.0" spacing="25.0">
+            <VBox prefHeight="447.0" prefWidth="812.0" spacing="25.0">
                <children>
+                  <Label alignment="CENTER" prefHeight="31.0" prefWidth="774.0" text="Consulta Solicitud" textAlignment="JUSTIFY" textFill="#6f4cbb">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </Label>
                   <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="168.0" prefWidth="776.0" vgap="10.0">
                      <children>
-                        <Label text="Tipo Documento" GridPane.halignment="CENTER" />
-                        <Label text="Solicitud" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Label text="Nombres" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Label text="Tipo Documento" textFill="#6f4cbb" GridPane.halignment="CENTER" />
+                        <Label text="Solicitud" textFill="#6f4cbb" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label text="Nombres" textFill="#6f4cbb" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                         <TextField fx:id="txtDocumento" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="200.0" GridPane.columnIndex="3" />
                         <TextField fx:id="txtNombres" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="191.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#buscarSolicitud" text="Buscar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                        <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#buscarSolicitud" prefHeight="31.0" prefWidth="120.0" styleClass="btnIniciar" stylesheets="@styles.css" text="Buscar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets right="20.0" />
                            </GridPane.margin>
                         </Button>
-                        <Label text="Documento" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                        <Label text="Documento" textFill="#6f4cbb" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
                         <ComboBox fx:id="cboTpDocumento" prefHeight="31.0" prefWidth="192.0" GridPane.columnIndex="1" />
                         <TextField fx:id="txtSolicitud" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="btnLimpiar" mnemonicParsing="false" onAction="#limpiarConsulta" prefHeight="31.0" prefWidth="111.0" styleClass="btnLimpiar" stylesheets="@styles.css" text="Limpiar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" text="Tipo Prenda" textFill="#6f4cbb" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="cboTpPrendas" prefHeight="31.0" prefWidth="192.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -46,13 +54,13 @@
                   </GridPane>
                   <TableView fx:id="consultaTable" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="776.0">
                      <columns>
-                        <TableColumn fx:id="idSolicitud" prefWidth="111.0" text="Cod. Solicitud" />
-                        <TableColumn fx:id="tpDocumento" prefWidth="65.0" text="Doc." />
-                        <TableColumn fx:id="nrDocumento" prefWidth="91.0" text="Numero" />
-                        <TableColumn fx:id="nombres" prefWidth="234.0" text="Nombres" />
+                        <TableColumn fx:id="idSolicitud" prefWidth="84.0" text="Cod. Solicitud" />
+                        <TableColumn fx:id="tpDocumento" prefWidth="108.0" text="Doc." />
+                        <TableColumn fx:id="nrDocumento" prefWidth="101.0" text="Numero" />
+                        <TableColumn fx:id="nombres" prefWidth="208.0" text="Nombres" />
                         <TableColumn fx:id="tpPrenda" minWidth="7.0" prefWidth="97.0" text="Prenda" />
-                        <TableColumn fx:id="ctPrendas" prefWidth="82.0" text="Cantidad" />
-                        <TableColumn fx:id="total" prefWidth="95.0" text="Total" />
+                        <TableColumn fx:id="ctPrendas" prefWidth="102.0" text="Cantidad" />
+                        <TableColumn fx:id="total" prefWidth="75.0" text="Total" />
                      </columns>
                   </TableView>
                </children>

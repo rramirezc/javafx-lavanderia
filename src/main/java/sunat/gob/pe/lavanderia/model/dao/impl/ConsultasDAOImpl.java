@@ -13,6 +13,7 @@ import java.util.List;
 import sunat.gob.pe.lavanderia.model.dao.IConsultaDao;
 import sunat.gob.pe.lavanderia.model.entities.Consultas;
 import sunat.gob.pe.lavanderia.model.entities.Documentos;
+import sunat.gob.pe.lavanderia.model.entities.TipoPrendas;
 import sunat.gob.pe.lavanderia.model.util.Conexion;
 import sunat.gob.pe.lavanderia.model.util.ConnectionPoolMySQL;
 
@@ -23,17 +24,18 @@ import sunat.gob.pe.lavanderia.model.util.ConnectionPoolMySQL;
 public class ConsultasDAOImpl implements IConsultaDao {
 
     @Override
-    public List<Consultas> listarConsulta(String tpDocumento, String nrDocumento, int nroSolicitud, String nombres) {
+    public List<Consultas> listarConsulta(String tpDocumento, String nrDocumento, int nroSolicitud, String nombres, int prenda) {
 
         Connection connection = null;
         PreparedStatement pstmt = null;
         List<Consultas> listaConsulta = new ArrayList<>();
         ResultSet rs = null;
-
+        System.err.println("==================================");
         System.err.println("tpDocumento:" + tpDocumento);
         System.err.println("nrDocumento:" + nrDocumento);
         System.err.println("nroSolicitud:" + nroSolicitud);
         System.err.println("nombres:" + nombres);
+        System.err.println("prenda:" + prenda);
 
         try {
 
@@ -63,6 +65,10 @@ public class ConsultasDAOImpl implements IConsultaDao {
                 if (nombres.length() > 0) {
                     sql += " and UPPER(CONCAT(c.nombres,\" \",c.apellidos)) like UPPER('%" + nombres + "%')";
                 }
+            }
+            
+            if (prenda > 0) {
+                sql += " and s.id_tipo_prenda = " + prenda;
             }
 
             System.err.println("sql ->" + sql);
@@ -135,6 +141,46 @@ public class ConsultasDAOImpl implements IConsultaDao {
         }
 
         return listaDocumentos;
+    }
+
+    @Override
+    public List<TipoPrendas> listaPrendas() {
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        List<TipoPrendas> listaTipoPrendas = new ArrayList<>();
+        ResultSet rs = null;
+
+        try {
+
+            connection = ConnectionPoolMySQL.getInstance().getConnection();
+
+            String sql = "select id_tipo_prenda, descripcion, precio from TIPO_PRENDA";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                listaTipoPrendas.add(new TipoPrendas(rs.getInt(1), rs.getString(2),rs.getDouble(3)));
+            }
+
+        } catch (SQLException se) {
+            System.out.println(se.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    ConnectionPoolMySQL.getInstance().closeConnection(connection);
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException se) {
+                System.out.println(se.getMessage());
+            }
+        }
+
+        return listaTipoPrendas;
     }
 
 }

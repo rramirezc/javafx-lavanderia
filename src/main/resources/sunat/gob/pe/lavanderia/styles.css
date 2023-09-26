@@ -58,3 +58,27 @@
 .anchor {
   -fx-background-image:url('../../../../imagenes/loading.gif');
 }
+
+.btnBuscar{
+  -fx-background-color: #6F4CBB;
+  -fx-text-fill: #ffffff;
+}
+
+.btnLimpiar{
+  -fx-background-color: #D5CBEB;
+  -fx-background-radius: 5;
+  -fx-text-fill: #371897;
+  -fx-border-color: #6F4CBB;
+  -fx-border-radius: 5;
+}
+
+.btnLimpiar:hover{
+  -fx-text-fill: #330099;
+  -fx-font-weight: bold;
+  -fx-cursor: hand;
+}
+
+.btnLimpiar:pressed{
+  -fx-background-color: #D5CBEB;
+  -fx-text-fill: #330099;
+}
