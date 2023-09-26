@@ -7,6 +7,7 @@ package sunat.gob.pe.lavanderia.controller;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,7 +20,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -29,7 +29,6 @@ import javafx.scene.control.TextField;
 import sunat.gob.pe.lavanderia.model.dao.IClientesDao;
 import sunat.gob.pe.lavanderia.model.dao.impl.ClientesDaoImpl;
 import sunat.gob.pe.lavanderia.model.entities.Clientes;
-import sunat.gob.pe.lavanderia.model.entities.Documentos;
 
 /**
  * FXML Controller class
@@ -40,6 +39,8 @@ public class ClientesController implements Initializable {
 
     @FXML
     private TableView<Clientes> clientesTable;
+    @FXML
+    private TableColumn<Clientes, String> tipoDocumentoColumn;
     @FXML
     private TableColumn<Clientes, String> numDocColumn;
     @FXML
@@ -55,9 +56,11 @@ public class ClientesController implements Initializable {
     @FXML
     private TableColumn<Clientes, String> direccionColumn;
     @FXML
-    private TableColumn<Clientes, String> fechaNacimientoColumn;
-    // private TableColumn<Clientes, Date> fechaNacimientoColumn;
-        @FXML
+    private TableColumn<Clientes, Date> fechaNacimientoColumn;
+    //private TableColumn<Clientes, String> fechaNacimientoColumn;
+    //@FXML
+   // private TextField txtTipoDocumento;
+    @FXML
     private TextField txtNombres;
     @FXML
     private DatePicker dateFechaNacimiento;
@@ -76,14 +79,12 @@ public class ClientesController implements Initializable {
     @FXML
     private Button btnGuardar;
 
-    String tipoDocumento;
     private ObservableList<Clientes> clientesData = FXCollections.observableArrayList();
-    private ObservableList<Documentos> consultaDataDocumentos = FXCollections.observableArrayList();
-    @FXML
-    private ComboBox<Documentos> cboTipoDocumento = new ComboBox<>();
+    //Date date = Date.valueOf(LocalDate.now());
+     Date date = new Date(0); // Today's date and current time
+   // LocalDate localDate = dateFechaNacimiento.getValue();
 
-    // private Clientes clientesActual = new Clientes("", "", "", "", Date.valueOf(LocalDate.MAX), "", "", "", "");
-    private Clientes clientesActual = new Clientes("", "", "", "", "", "", "", "", "");
+    private Clientes clientesActual = new Clientes("", "", "", "",date, "", "", "", "");
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -93,7 +94,11 @@ public class ClientesController implements Initializable {
         seleccionarElementosDeTabla();
 
     }
-   // String tipoDocumento;
+    public void getDate(ActionEvent event){
+        LocalDate myDate = dateFechaNacimiento.getValue();
+    // String myformattedDate = myDate.format(DateTimeFormatter.ofPattern("yyyy-dd-MM"));
+        fechaNacimientoColumn.setText(myDate.toString());
+    }
 
     private void seleccionarClientes(Clientes clientesNuevo) {
 
@@ -104,17 +109,18 @@ public class ClientesController implements Initializable {
             clientesActual.setApellidos(clientesNuevo.getApellidos());
             clientesActual.setEmail(clientesNuevo.getEmail());
             clientesActual.setSexo(clientesNuevo.getSexo());
-            clientesActual.setDireccion(clientesNuevo.getSexo());
+            clientesActual.setDireccion(clientesNuevo.getDireccion());
             clientesActual.setTelefono(clientesNuevo.getTelefono());
             clientesActual.setFecha_nacimiento(clientesNuevo.getFecha_nacimiento());
+            //clientesActual.setFecha_nacimiento(clientesNuevo.getFecha_nacimiento());
         } else {
-            //  clientesActual = new Clientes("", "", "", "", Date.valueOf(LocalDate.now()), "", "", "", "");
-            clientesActual = new Clientes("", "", "", "", "", "", "", "", "");
+            clientesActual = new Clientes("", "", "", "", date, "", "", "", "");
         }
     }
 
     private void enlazarTabla() {
         clientesTable.setItems(clientesData);
+        //txtTipoDocumento.textProperty().bindBidirectional(clientesActual.getTipo_documento1());
         txtNombres.textProperty().bindBidirectional(clientesActual.getNombres1());
         txtApellidos.textProperty().bindBidirectional(clientesActual.getApellidos1());
         txtDireccion.textProperty().bindBidirectional(clientesActual.getDireccion1());
@@ -122,10 +128,12 @@ public class ClientesController implements Initializable {
         txtNumeroDocumento.textProperty().bindBidirectional(clientesActual.getNumero_documento1());
         txtSexo.textProperty().bindBidirectional(clientesActual.getSexo1());
         txtTelefono.textProperty().bindBidirectional(clientesActual.getTelefono1());
-        //dateFechaNacimiento.dayCellFactoryProperty().bindBidirectional(clientesActual.getFecha_nacimiento1());
-        //dateFechaNacimiento.textProperty().bindBidirectional(clientesActual.getFecha_nacimiento1());
-        // dateFechaNacimiento.converterProperty().bindBidirectional(clientesActual.getFecha_nacimiento1());
+        //dateFechaNacimiento.valueProperty().bindBidirectional(clientesActual.getFecha_nacimiento1());
+      //  dateFechaNacimiento.valueProperty().bindBidirectional(clientesActual.getFecha_nacimiento1());
+        
+        //inmueble.setFecharegistro2(((LocalDate)this.dpFecha.getValue()).toString());
 
+        tipoDocumentoColumn.setCellValueFactory(rowData -> rowData.getValue().getTipo_documento1());
         numDocColumn.setCellValueFactory(rowData -> rowData.getValue().getNumero_documento1());
         nombreColumn.setCellValueFactory(rowData -> rowData.getValue().getNombres1());
         apellidoColumn.setCellValueFactory(rowData -> rowData.getValue().getApellidos1());
@@ -134,70 +142,17 @@ public class ClientesController implements Initializable {
         sexoColumn.setCellValueFactory(rowData -> rowData.getValue().getSexo1());
         direccionColumn.setCellValueFactory(rowData -> rowData.getValue().getDireccion1());
         fechaNacimientoColumn.setCellValueFactory(rowData -> rowData.getValue().getFecha_nacimiento1());
-        //fechaNacimientoColumn.setCellValueFactory(rowData -> rowData.getValue().getFecha_nacimiento1());
-        // llenar combo
-        cboTipoDocumento.setItems(consultaDataDocumentos);
+
     }
 
     private void llenarDatosEnTabla() {
-
         IClientesDao clientesDao = new ClientesDaoImpl();
-        
         clientesData.addAll(clientesDao.listarClientes());
-        
-        
-        consultaDataDocumentos.addAll(new Documentos("-1", "Seleccione..."));
-        consultaDataDocumentos.addAll(clientesDao.listarDocumentos());
-        cboTipoDocumento.setPromptText("Seleccione...");
-        cboTipoDocumento.setButtonCell(
-                new ListCell<Documentos>() {
-            @Override
-            public void updateItem(Documentos doc, boolean empty
-            ) {
-                super.updateItem(doc, empty);
-                if (doc != null) {
-                    setText(doc.getDescripcionCorta());
-                } else {
-                    setText(null);
-                }
-
-            }
-        }
-        );
-        cboTipoDocumento.setCellFactory(
-                (ListView<Documentos> e) -> {
-                    final ListCell<Documentos> listCell = new ListCell<>() {
-
-                @Override
-                public void updateItem(Documentos doc, boolean empty) {
-                    super.updateItem(doc, empty);
-                    if (doc != null) {
-                        setText(doc.getDescripcionCorta());
-
-                    } else {
-                        setText(null);
-                    }
-
-                }
-            };
-                    return listCell;
-                }
-        );
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
 
     private void seleccionarElementosDeTabla() {
         clientesTable.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Clientes> ov, Clientes clientesAntiguo, Clientes clientesNuevo) -> {
             seleccionarClientes(clientesNuevo);
-
             StringBinding btnGuardarText = new StringBinding() {
                 @Override
                 protected String computeValue() {
@@ -212,26 +167,25 @@ public class ClientesController implements Initializable {
             btnGuardar.textProperty().bind(btnGuardarText);
         });
     }
+
     public void guardarClientes(ActionEvent event) {
-         cboTipoDocumento.getSelectionModel().selectedItemProperty().addListener((ov, t, t1) -> {
-            tipoDocumento = t1.getTpDocumento();
-        });
-        //String clientesNumeroDocumento = txtNumeroDocumento.getText();
+
         if (clientesActual.getTipo_documento() == "") {
-       //if (!clientesNumeroDocumento.isEmpty()) {
-         //   if (!isNumeric(clientesNumeroDocumento)) {
             if (clientesActual.getNombres().isEmpty()) {
                 mostrarAlertas("Warning", "Ingrese nombres", Alert.AlertType.WARNING);
                 //limpiarTabla();
                 return;
             }
-
+            //if (clientesActual.getFecha_nacimiento().isEmpty()) {
+              //  mostrarAlertas("Warning", "Ingrese fecha de nacimiento", Alert.AlertType.WARNING);
+                //limpiarTabla();
+                //return;
+            //}
             if (clientesActual.getApellidos().isEmpty()) {
                 mostrarAlertas("Warning", "Ingrese Apellidos", Alert.AlertType.WARNING);
-                
+
                 return;
             }
-
             if (clientesActual.getDireccion().isEmpty()) {
                 mostrarAlertas("Warning", "Ingrese Dirección", Alert.AlertType.WARNING);
                 return;
@@ -249,7 +203,6 @@ public class ClientesController implements Initializable {
                 return;
             }
 
-            //        alumnoActual.setEstado(EstadoEnum.ACTIVO.getValor());
             IClientesDao clientesDao = new ClientesDaoImpl();
             clientesDao.guardarClientes(clientesActual);
             mostrarAlertas("Informacion", "Se guardo exitosamente", Alert.AlertType.INFORMATION);
@@ -263,8 +216,8 @@ public class ClientesController implements Initializable {
         dialogo.setContentText(content);
         dialogo.show();
     }
-    
-    private void limpiarTabla(){
-        clientesTable.getItems().clear();
-    }
 }
+   // private void limpiarTabla() {
+     //   clientesTable.getItems().clear();
+    //}
+

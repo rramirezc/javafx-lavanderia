@@ -39,8 +39,9 @@ public class ClientesDaoImpl implements IClientesDao {
             pstmt.setString(2, clientes.getNumero_documento());
             pstmt.setString(3, clientes.getNombres());
             pstmt.setString(4, clientes.getApellidos());
-          //  pstmt.setString(4, clientes.getFecha_nacimiento().toString());
-            pstmt.setString(5, clientes.getFecha_nacimiento());
+            pstmt.setDate(5, clientes.getFecha_nacimiento());
+            //pstmt.setString(5, clientes.getFecha_nacimiento().toString());
+            //pstmt.setString(5, clientes.getFecha_nacimiento());
             pstmt.setString(6, clientes.getSexo());
             pstmt.setString(7, clientes.getTelefono());
             pstmt.setString(8, clientes.getEmail());
@@ -81,7 +82,7 @@ public class ClientesDaoImpl implements IClientesDao {
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 listaClientes.add(new Clientes(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                        rs.getString(5), rs.getString(6),
+                        rs.getDate(5), rs.getString(6),
                         rs.getString(7), rs.getString(8), rs.getString(9)));
                 //      listaClientes.add(new Clientes(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
                 //            rs.getDate(5), rs.getString(6),
@@ -127,7 +128,7 @@ public class ClientesDaoImpl implements IClientesDao {
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 clientes = new Clientes(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                        rs.getString(5), rs.getString(6),
+                        rs.getDate(5), rs.getString(6),
                         rs.getString(7), rs.getString(8), rs.getString(9));
             }
 
@@ -164,8 +165,8 @@ public class ClientesDaoImpl implements IClientesDao {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, clientes.getNombres());
             pstmt.setString(2, clientes.getApellidos());
-            pstmt.setString(2, clientes.getFecha_nacimiento());
-           // pstmt.setDate(3, clientes.getFecha_nacimiento());
+            //pstmt.setString(2, clientes.getFecha_nacimiento());
+            pstmt.setDate(3, clientes.getFecha_nacimiento());
             pstmt.setString(4, clientes.getSexo());
             pstmt.setString(5, clientes.getTelefono());
             pstmt.setString(6, clientes.getEmail());
