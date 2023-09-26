@@ -9,18 +9,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import sunat.gob.pe.lavanderia.model.dao.IClientesDao;
 import sunat.gob.pe.lavanderia.model.entities.Clientes;
+import sunat.gob.pe.lavanderia.model.entities.Documentos;
 import sunat.gob.pe.lavanderia.model.util.Conexion;
+import sunat.gob.pe.lavanderia.model.util.ConnectionPoolMySQL;
 
 /**
  *
  * @author ovelarde
  */
 public class ClientesDaoImpl implements IClientesDao {
-
+    
     @Override
     public void guardarClientes(Clientes clientes) {
         Conexion conexion = new Conexion();
@@ -37,6 +40,8 @@ public class ClientesDaoImpl implements IClientesDao {
             pstmt.setString(3, clientes.getNombres());
             pstmt.setString(4, clientes.getApellidos());
             pstmt.setDate(5, clientes.getFecha_nacimiento());
+            //pstmt.setString(5, clientes.getFecha_nacimiento().toString());
+            //pstmt.setString(5, clientes.getFecha_nacimiento());
             pstmt.setString(6, clientes.getSexo());
             pstmt.setString(7, clientes.getTelefono());
             pstmt.setString(8, clientes.getEmail());
@@ -67,6 +72,7 @@ public class ClientesDaoImpl implements IClientesDao {
         PreparedStatement pstmt = null;
         List<Clientes> listaClientes = new ArrayList<>();
         ResultSet rs = null;
+                
         try {
 
             String sql = "Select tipo_documento, numero_documento, nombres, apellidos, "
@@ -78,6 +84,9 @@ public class ClientesDaoImpl implements IClientesDao {
                 listaClientes.add(new Clientes(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
                         rs.getDate(5), rs.getString(6),
                         rs.getString(7), rs.getString(8), rs.getString(9)));
+                //      listaClientes.add(new Clientes(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                //            rs.getDate(5), rs.getString(6),
+                //          rs.getString(7), rs.getString(8), rs.getString(9)));
             }
 
         } catch (SQLException se) {
@@ -156,6 +165,7 @@ public class ClientesDaoImpl implements IClientesDao {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, clientes.getNombres());
             pstmt.setString(2, clientes.getApellidos());
+            //pstmt.setString(2, clientes.getFecha_nacimiento());
             pstmt.setDate(3, clientes.getFecha_nacimiento());
             pstmt.setString(4, clientes.getSexo());
             pstmt.setString(5, clientes.getTelefono());
@@ -212,4 +222,45 @@ public class ClientesDaoImpl implements IClientesDao {
         }
     }
 
+    @Override
+    public List<Documentos> listarDocumentos() {
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        List<Documentos> listaDocumentos = new ArrayList<>();
+        ResultSet rs = null;
+
+        try {
+
+            connection = ConnectionPoolMySQL.getInstance().getConnection();
+
+            String sql = "select tipo_documento ,descripcion_corta  from TIPO_DOCUMENTO";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                listaDocumentos.add(new Documentos(rs.getString(1), rs.getString(2)));
+            }
+
+        } catch (SQLException se) {
+            System.out.println(se.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    ConnectionPoolMySQL.getInstance().closeConnection(connection);
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException se) {
+                System.out.println(se.getMessage());
+            }
+        }
+
+        return listaDocumentos;
+    }
+    
+    
 }

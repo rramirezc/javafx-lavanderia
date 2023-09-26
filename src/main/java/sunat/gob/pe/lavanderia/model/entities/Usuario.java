@@ -1,44 +1,69 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package sunat.gob.pe.lavanderia.model.entities;
 
-/**
- *
- * @author Aldo Malaver
- */
 public class Usuario {
-    
-    private String usuario;
-    
-    private String password;
+  private Long idUsuario;
+  private String nombres;
+  private String apellidos;
+  private String usuario;
+  private String password;
+  private String telefono;
+  private String email;
+  
+  public Long getIdUsuario() {
+    return idUsuario;
+  }
 
-    public Usuario() {
-        
-    }   
+  public void setIdUsuario(Long idUsuario) {
+    this.idUsuario = idUsuario;
+  }
 
-    public Usuario(String usuario, String password) {
-        this.usuario = usuario;
-        this.password = password;
-    }       
+  public String getNombres() {
+    return nombres;
+  }
 
-    public String getUsuario() {
-        return usuario;
-    }
+  public void setNombres(String nombres) {
+    this.nombres = nombres;
+  }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
+  public String getApellidos() {
+    return apellidos;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public void setApellidos(String apellidos) {
+    this.apellidos = apellidos;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    
-    
-    
+  public String getUsuario() {
+    return usuario;
+  }
+
+  public void setUsuario(String usuario) {
+    this.usuario = usuario;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public String getTelefono() {
+    return telefono;
+  }
+
+  public void setTelefono(String telefono) {
+    this.telefono = telefono;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  
 }

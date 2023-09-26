@@ -8,29 +8,35 @@ import java.io.Serializable;
 
 /**
  *
- * @author Daniel
+ * @author 
  */
-public final class TipoPrendas implements Serializable{
+public class TipoPrendas implements Serializable{
     
-    int tipoPrenda;
-    String descripcionTipo;
-    double precio;
-    
-
-    public int getTipoPrenda() {
-        return tipoPrenda;
+    private int tipPrenda;
+    private String descripcion;
+    private double precio;
+ 
+    public TipoPrendas(int tipPrenda, String descripcion, double precio) {
+        this.tipPrenda = tipPrenda;
+        this.descripcion = descripcion;
+        this.precio = precio;
     }
 
-    public void setTipoPrenda(int tipoPrenda) {
-        this.tipoPrenda = tipoPrenda;
+    public int getTipPrenda() {
+        return tipPrenda;
     }
 
-    public String getDescripcionTipo() {
-        return descripcionTipo;
+    public void setTipPrenda(int tipPrenda) {
+        this.tipPrenda = tipPrenda;
     }
 
-    public void setDescripcionTipo(String descripcionTipo) {
-        this.descripcionTipo = descripcionTipo;
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+
     }
 
     public double getPrecio() {
@@ -40,13 +46,4 @@ public final class TipoPrendas implements Serializable{
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-
-    public TipoPrendas(int tipoPrenda, String descripcion, double precio){
-        setTipoPrenda(tipoPrenda);
-        setDescripcionTipo(descripcion);
-        setPrecio(precio);
-    }
-    
-    
-    
 }

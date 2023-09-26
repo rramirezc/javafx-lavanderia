@@ -71,9 +71,15 @@ INSERT INTO USUARIO(id_usuario,nombres,apellidos,usuario,password,telefono,email
 VALUES
 (0,'Juan Alberto','Perez Gonzales','jperez',aes_encrypt('Clave@125' ,'keyLavadanderia'),'925999999','jperez@lavanderia.com.pe');
 
+ALTER TABLE USUARIO
+ADD CONSTRAINT usuario_unique_email UNIQUE KEY(email);
 INSERT INTO USUARIO(id_usuario,nombres,apellidos,usuario,password,telefono,email)
 VALUES
 (0,'Cristhian','Estrada Mori','cestrada',aes_encrypt('123' ,'keyLavadanderia'),'925999999','cestrada@lavanderia.com.pe');
+
+INSERT INTO USUARIO(id_usuario,nombres,apellidos,usuario,password,telefono,email)
+VALUES
+(0,'Olenka','Velarde Vargas','ovelarde',aes_encrypt('1234' ,'keyLavadanderia'),'999999999','ovelarde@lavanderia.com.pe');
 
 
 INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Algodón",100.00);
@@ -96,10 +102,10 @@ values ('04',77777777,'Bob','Esponja',STR_TO_DATE('1987-07-17', '%Y-%m-%d'),'M',
 
 
 insert into SOLICITUD (id_solicitud,tipo_documento,numero_documento,id_usuario,id_tipo_prenda,cantidad_prendas,peso,precio_total,fecha_solicitud,fecha_entrega)
-Values (0,'01',44508872,2,3,4,100,1200,STR_TO_DATE('2023-08-23', '%Y-%m-%d'),STR_TO_DATE('2023-10-23', '%Y-%m-%d'));
+Values (0,'01',44508872,2,7,4,100,1200,STR_TO_DATE('2023-08-23', '%Y-%m-%d'),STR_TO_DATE('2023-10-23', '%Y-%m-%d'));
 
 insert into SOLICITUD (id_solicitud,tipo_documento,numero_documento,id_usuario,id_tipo_prenda,cantidad_prendas,peso,precio_total,fecha_solicitud,fecha_entrega)
 Values (0,'07',12345678,2,3,6,200,4000,STR_TO_DATE('2023-08-23', '%Y-%m-%d'),STR_TO_DATE('2023-10-23', '%Y-%m-%d'));
 
 insert into SOLICITUD (id_solicitud,tipo_documento,numero_documento,id_usuario,id_tipo_prenda,cantidad_prendas,peso,precio_total,fecha_solicitud,fecha_entrega)
-Values (0,'04',77777777,2,3,11,400,1200,STR_TO_DATE('2023-08-23', '%Y-%m-%d'),STR_TO_DATE('2023-10-23', '%Y-%m-%d'));
+Values (0,'04',77777777,2,10,11,400,1200,STR_TO_DATE('2023-08-23', '%Y-%m-%d'),STR_TO_DATE('2023-10-23', '%Y-%m-%d'));

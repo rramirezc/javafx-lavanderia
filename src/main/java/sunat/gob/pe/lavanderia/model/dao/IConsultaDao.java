@@ -7,6 +7,7 @@ package sunat.gob.pe.lavanderia.model.dao;
 import java.util.List;
 import sunat.gob.pe.lavanderia.model.entities.Consultas;
 import sunat.gob.pe.lavanderia.model.entities.Documentos;
+import sunat.gob.pe.lavanderia.model.entities.TipoPrendas;
 
 /**
  *
@@ -14,7 +15,8 @@ import sunat.gob.pe.lavanderia.model.entities.Documentos;
  */
 public interface IConsultaDao {
     
-    List<Consultas> listarConsulta(String tpDocumento,String nrDocumento,int nroSolicitud,String nombres); 
+    List<Consultas> listarConsulta(String tpDocumento,String nrDocumento,int nroSolicitud,String nombres, int prenda); 
     List<Documentos> listarDocumentos();
+    List<TipoPrendas> listaPrendas();
     
 }

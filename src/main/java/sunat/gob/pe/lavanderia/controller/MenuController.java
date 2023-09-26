@@ -55,7 +55,7 @@ public class MenuController {
         Parent clientes = App.loadFXML("clientes");
         App.scene.setRoot(clientes);
         Window window = App.scene.getWindow();
-        window.setWidth(700);
+        window.setWidth(1000);
         window.setHeight(450);
     }
 
@@ -84,7 +84,7 @@ public class MenuController {
 
         Window window = App.scene.getWindow();
         window.setWidth(1000);
-        window.setHeight(450);
+        window.setHeight(500);
     }
 
 }
