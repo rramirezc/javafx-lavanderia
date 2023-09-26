@@ -31,8 +31,7 @@ sexo CHAR(1) NOT NULL,
 telefono VARCHAR(20) NULL,
 email VARCHAR(100) NULL,
 direccion VARCHAR(100) NULL,
-CONSTRAINT cliente_pk PRIMARY KEY (tipo_documento,numero_documento),
-CONSTRAINT tipo_documento_fk FOREIGN KEY (tipo_documento) REFERENCES TIPO_DOCUMENTO(tipo_documento)
+CONSTRAINT cliente_pk PRIMARY KEY (tipo_documento,numero_documento)
 );
 
 CREATE TABLE TIPO_PRENDA(
