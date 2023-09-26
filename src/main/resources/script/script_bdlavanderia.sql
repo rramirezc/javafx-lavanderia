@@ -59,6 +59,10 @@ CONSTRAINT usuario_fk FOREIGN KEY (id_usuario) REFERENCES USUARIO(id_usuario),
 CONSTRAINT tipo_prenda_fk FOREIGN KEY (id_tipo_prenda) REFERENCES TIPO_PRENDA(id_tipo_prenda)
 );
 
+
+alter table SOLICITUD add column pendiente char(1) 
+not null default '1' after fecha_entrega;
+
 INSERT INTO TIPO_DOCUMENTO(tipo_documento,descripcion_larga,descripcion_corta)VALUES
 ('01','LIBRETA ELECTORAL O DNI','L.E / DNI'),
 ('04','CARNET DE EXTRANJERIA','CARNET EXT.'),
@@ -103,3 +107,5 @@ Values (0,'07',12345678,2,3,6,200,4000,STR_TO_DATE('2023-08-23', '%Y-%m-%d'),STR
 
 insert into SOLICITUD (id_solicitud,tipo_documento,numero_documento,id_usuario,id_tipo_prenda,cantidad_prendas,peso,precio_total,fecha_solicitud,fecha_entrega)
 Values (0,'04',77777777,2,3,11,400,1200,STR_TO_DATE('2023-08-23', '%Y-%m-%d'),STR_TO_DATE('2023-10-23', '%Y-%m-%d'));
+
+

@@ -4,6 +4,7 @@
  */
 package sunat.gob.pe.lavanderia.controller;
 
+import sunat.gob.pe.lavanderia.model.util.Dimensiones;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,8 @@ import sunat.gob.pe.lavanderia.model.dao.impl.AlumnoDaoImpl;
 import sunat.gob.pe.lavanderia.model.dao.impl.UsuarioDAOImpl;
 import sunat.gob.pe.lavanderia.model.entities.Alumno;
 import sunat.gob.pe.lavanderia.model.entities.Usuario;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
 
 /**
  * FXML Controller class
@@ -31,63 +34,76 @@ import sunat.gob.pe.lavanderia.model.entities.Usuario;
  */
 public class LoginController {
 
-  private IUsuarioDao usuarioDao = new UsuarioDAOImpl();
+    private IUsuarioDao usuarioDao = new UsuarioDAOImpl();
 
-  @FXML
-  private TextField txtUsuario;
+    @FXML
+    private TextField txtUsuario;
 
-  @FXML
-  private PasswordField txtPassword;
+    @FXML
+    private PasswordField txtPassword;
 
-  @FXML
-  public void autenticarUsuario(ActionEvent actionEvent) throws IOException {
+    public static Scene scene;
 
-    if (validarDatos()) {
+    @FXML
+    public void autenticarUsuario(ActionEvent actionEvent) throws IOException {
 
-      StringProperty primerNombre = new SimpleStringProperty("Aldo");
-      StringProperty apellidoPaterno = new SimpleStringProperty("Malaver");
+        if (validarDatos()) {
 
-      System.out.println("PN:::" + primerNombre.get());
-      System.out.println("AP:::" + apellidoPaterno.get());
-      apellidoPaterno.bindBidirectional(primerNombre);
-      System.out.println("AP:::" + apellidoPaterno.get());
+            StringProperty primerNombre = new SimpleStringProperty("Aldo");
+            StringProperty apellidoPaterno = new SimpleStringProperty("Malaver");
 
-      primerNombre.set("Pepito");
-      apellidoPaterno.set("Juancito");
-      System.out.println("PN:::" + primerNombre.get());
-      System.out.println("AP:::" + apellidoPaterno.get());
+            System.out.println("PN:::" + primerNombre.get());
+            System.out.println("AP:::" + apellidoPaterno.get());
+            apellidoPaterno.bindBidirectional(primerNombre);
+            System.out.println("AP:::" + apellidoPaterno.get());
 
-      FXMLLoader loader = App.getFXMLLoader("dashboard");
-      Parent dashboard = loader.load();
-      App.scene.setRoot(dashboard);
-      DashboardController dashboardController = loader.<DashboardController>getController();
-      dashboardController.setMensaje(txtUsuario.getText());
-      App.scene.getStylesheets().add(App.class.getResource("styles.css").toExternalForm());
+            primerNombre.set("Pepito");
+            apellidoPaterno.set("Juancito");
+            System.out.println("PN:::" + primerNombre.get());
+            System.out.println("AP:::" + apellidoPaterno.get());
+
+            FXMLLoader loader = App.getFXMLLoader("dashboard");
+            Parent dashboard = loader.load();
+
+            /*Redimensionamos y ubicamos la App*/
+            /*
+             App.scene.getWindow().setHeight(800.0);
+             App.scene.getWindow().setWidth(1280.0);
+             App.scene.getWindow().setX(120.0);
+             App.scene.getWindow().setY(10.0);
+             */
+            Dimensiones.redimensionar(App.scene);
+
+            App.scene.setRoot(dashboard);
+            //App.scene.get
+            DashboardController dashboardController = loader.<DashboardController>getController();
+            dashboardController.setMensaje(txtUsuario.getText());
+            App.scene.getStylesheets().add(App.class.getResource("styles.css").toExternalForm());
+        }
+
     }
 
-  }
+    private boolean validarDatos() {
 
-  private boolean validarDatos() {
+        if (txtUsuario.getText().isEmpty()) {
+            System.out.println("Ingrese usuario válido");
+            return false;
+        }
 
-    if (txtUsuario.getText().isEmpty()) {
-      System.out.println("Ingrese usuario válido");
-      return false;
+        if (txtPassword.getText().isEmpty()) {
+            System.out.println("Ingrese password válido");
+            return false;
+        }
+
+        boolean resultado = usuarioDao.login(txtUsuario.getText(), txtPassword.getText());
+        System.out.println("Resultado: " + resultado);
+        if (!resultado) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Usuario y/o Password inválidos");
+            alert.show();
+        }
+
+        return resultado;
     }
-
-    if (txtPassword.getText().isEmpty()) {
-      System.out.println("Ingrese password válido");
-      return false;
-    }
-
-    boolean resultado = usuarioDao.login(txtUsuario.getText(), txtPassword.getText());
-    System.out.println("Resultado: " + resultado);
-    if(!resultado){
-      Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      alert.setContentText("Usuario y/o Password inválidos");
-      alert.show();
-    }
-    
-    return resultado;
-  }
 
 }
