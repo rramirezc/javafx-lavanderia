@@ -33,6 +33,7 @@ import sunat.gob.pe.lavanderia.controller.service.MailService;
 import sunat.gob.pe.lavanderia.model.dao.IUsuarioDao;
 import sunat.gob.pe.lavanderia.model.dao.impl.UsuarioDAOImpl;
 import sunat.gob.pe.lavanderia.model.entities.Usuario;
+import sunat.gob.pe.lavanderia.model.util.Dimensiones;
 
 public class LoginController implements Initializable {
 
@@ -90,13 +91,8 @@ public class LoginController implements Initializable {
       DashboardController dashboardController = loader.<DashboardController>getController();
       dashboardController.setMensaje(txtUsuario.getText());
       App.scene.getStylesheets().add(App.class.getResource("styles.css").toExternalForm());
-      Window window = App.scene.getWindow();
-      window.setWidth(1280);
-      window.setHeight(600);
-      Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-      Stage stage = App.primaryStage;
-      stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
-      stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
+      Dimensiones.redimensionar(App.scene);
+      
     }
 
   }

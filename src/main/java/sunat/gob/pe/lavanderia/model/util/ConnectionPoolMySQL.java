@@ -9,7 +9,7 @@ public class ConnectionPoolMySQL {
   private final String DB = "bdlavanderia";
   private final String URL = "jdbc:mysql://localhost:3306/" + DB + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
   private final String USER = "root";
-  private final String PASS = "admin1234";
+  private final String PASS = "mysql";
 
   private static ConnectionPoolMySQL dataSource;
   private BasicDataSource basicDataSource = null;

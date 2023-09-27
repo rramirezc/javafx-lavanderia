@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import sunat.gob.pe.lavanderia.model.entities.Usuario;
 
 /**
  * JavaFX App
@@ -14,7 +15,8 @@ import javafx.stage.Stage;
 public class App extends Application {
 
   public static Scene scene;
-  public static Stage primaryStage;
+  //public static Stage primaryStage;
+  public Usuario usuario;
 
   @Override
   public void start(Stage stage) {
@@ -29,7 +31,7 @@ public class App extends Application {
       Image icon = new Image(getClass().getResourceAsStream("logo.jpg"));
       stage.getIcons().add(icon);
       stage.show();
-      primaryStage = stage;
+      //primaryStage = stage;
     } catch (IOException ie) {
       System.out.println(ie.getMessage());
       ie.printStackTrace();
