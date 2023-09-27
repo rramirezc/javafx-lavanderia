@@ -62,7 +62,7 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Button>
-                        <ComboBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="190.0" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="cmbTipoDocumento" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="190.0" GridPane.columnIndex="1" />
                             </children>
                         </GridPane>
                         <TableView fx:id="clientesTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="143.0" prefWidth="789.0">

@@ -221,8 +221,8 @@ public class SolicitudController implements Initializable {
         Clientes cliente = null;
         IClientesDao clientesDAO = new ClientesDaoImpl();
         cliente = clientesDAO.buscarClientesPorId(tipoDocumento, numeroDocumento);
-        System.out.println("Tipo: "+cliente.getTipo_documento());
-        System.out.println("Documento: "+cliente.getNumero_documento());
+        //System.out.println("Tipo: "+cliente.getTipo_documento());
+        //System.out.println("Documento: "+cliente.getNumero_documento());
         if(cliente!=null) existe = true;
         return existe;
     }

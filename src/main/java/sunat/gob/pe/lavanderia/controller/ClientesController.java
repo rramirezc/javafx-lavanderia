@@ -20,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -27,8 +28,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import sunat.gob.pe.lavanderia.model.dao.IClientesDao;
+import sunat.gob.pe.lavanderia.model.dao.IConsultaDao;
 import sunat.gob.pe.lavanderia.model.dao.impl.ClientesDaoImpl;
+import sunat.gob.pe.lavanderia.model.dao.impl.ConsultasDAOImpl;
 import sunat.gob.pe.lavanderia.model.entities.Clientes;
+import sunat.gob.pe.lavanderia.model.entities.Documentos;
+import sunat.gob.pe.lavanderia.model.entities.TipoPrendas;
 
 /**
  * FXML Controller class
@@ -78,6 +83,11 @@ public class ClientesController implements Initializable {
     private TextField txtNumeroDocumento;
     @FXML
     private Button btnGuardar;
+    
+    @FXML
+    private ComboBox<Documentos> cmbTipoDocumento = new ComboBox();
+    
+    private ObservableList<Documentos> consultaDataDocumentos = FXCollections.observableArrayList();
 
     private ObservableList<Clientes> clientesData = FXCollections.observableArrayList();
     //Date date = Date.valueOf(LocalDate.now());
@@ -88,12 +98,41 @@ public class ClientesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
+        iniciarFormulario();
         enlazarTabla();
                 llenarDatosEnTabla();
         seleccionarElementosDeTabla();
 
     }
+    public void iniciarFormulario(){
+        IConsultaDao consultaDao = new ConsultasDAOImpl();
+        consultaDataDocumentos.addAll(consultaDao.listarDocumentos());      
+        cmbTipoDocumento.setButtonCell(
+                new ListCell<Documentos>() {
+            @Override
+            public void updateItem(Documentos doc, boolean empty) {
+                super.updateItem(doc, empty);
+                if (doc != null) setText(doc.getDescripcionCorta());
+                else setText(null);
+             }
+        });
+        cmbTipoDocumento.setCellFactory(
+                (ListView<Documentos> e) -> {
+                    final ListCell<Documentos> listCell = new ListCell<>() {
+                @Override
+                public void updateItem(Documentos doc, boolean empty) {
+                    super.updateItem(doc, empty);
+                    if (doc != null)setText(doc.getDescripcionCorta());
+                    else setText(null);
+                    }
+                 };
+                   return listCell;
+                });
+                consultaDataDocumentos.add(0, new Documentos("-1", "Seleccione..."));
+                cmbTipoDocumento.setItems(consultaDataDocumentos);
+    }
+    
     public void getDate(ActionEvent event){
         LocalDate myDate = dateFechaNacimiento.getValue();
     // String myformattedDate = myDate.format(DateTimeFormatter.ofPattern("yyyy-dd-MM"));
