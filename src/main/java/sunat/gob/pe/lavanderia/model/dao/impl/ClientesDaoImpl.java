@@ -118,18 +118,18 @@ public class ClientesDaoImpl implements IClientesDao {
 
         return listaClientes;
     }
-/*
+
     @Override
     public Clientes buscarClientesPorId(String tipo_documento, String numero_documento) {
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.getConexion();
+        
+        Connection conn=null;
         PreparedStatement pstmt = null;
         Clientes clientes = null;
         ResultSet rs = null;
         try {
-
+            conn = ConnectionPoolMySQL.getInstance().getConnection();
             String sql = "Select tipo_documento, numero_documento, nombres, apellidos, "
-                    + "fecha_nacimiento,sexo, telefono, email, direccion from Cliente where tipo_documento = ?, numero_documento = ?";
+                    + "fecha_nacimiento,sexo, telefono, email, direccion from Cliente where tipo_documento = ? and numero_documento = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, tipo_documento);
             pstmt.setString(2, numero_documento);
@@ -161,7 +161,7 @@ public class ClientesDaoImpl implements IClientesDao {
 
         return clientes;
     }
-
+/*
     @Override
     public void actualizarClientes(Clientes clientes) {
         Conexion conexion = new Conexion();

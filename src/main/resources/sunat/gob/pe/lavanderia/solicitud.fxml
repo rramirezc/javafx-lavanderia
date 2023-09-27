@@ -15,10 +15,10 @@
          <children>
             <GridPane layoutX="6.0" layoutY="11.0" prefHeight="411.0" prefWidth="776.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="163.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="183.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="4.0" prefWidth="15.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="127.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="118.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="209.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="4.0" prefWidth="9.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="151.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="135.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0" prefWidth="97.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="10.0" prefWidth="18.0" />
@@ -43,8 +43,8 @@
                   <Button fx:id="btnRegistrar" mnemonicParsing="false" onAction="#registrarSolicitud" text="Registrar" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="10" />
                   <Button mnemonicParsing="false" text="Limpiar" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
                   <Button mnemonicParsing="false" text="Cancelar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-                  <Label text="Tipo doc." GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Label prefHeight="34.0" prefWidth="90.0" text="Número documento" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+                  <Label text="Tipo documento" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Label prefHeight="34.0" prefWidth="138.0" text="Número documento" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
                   <ComboBox fx:id="cmbTipoDocumento" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="txtNumeroDocumento" maxWidth="-Infinity" prefHeight="21.0" prefWidth="102.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                      <padding>
@@ -66,28 +66,20 @@
                         <Insets right="50.0" />
                      </padding>
                   </TextField>
-                  <Label text="Precio ($)" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                  <TextField id="txtPrecioDolares" fx:id="txtPrecioDolares" editable="false" maxWidth="-Infinity" prefHeight="21.0" prefWidth="88.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
-                     <effect>
-                        <SepiaTone />
-                     </effect>
-                     <padding>
-                        <Insets right="50.0" />
-                     </padding>
-                  </TextField>
                   <TextField id="txtFechaSolicitud" fx:id="txtFechaSolicitud" editable="false" maxWidth="-Infinity" prefHeight="21.0" prefWidth="114.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <padding>
                         <Insets right="50.0" />
                      </padding>
                   </TextField>
                   <Label text="Fecha solicitud" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-                  <Label text="Fecha entrega" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                  <Label text="Fecha entrega" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
                   <DatePicker id="txtFechaEntrega" fx:id="txtFechaEntrega" GridPane.columnIndex="4" GridPane.rowIndex="8" />
                   <TextField fx:id="txtPeso" maxWidth="-Infinity" prefHeight="21.0" prefWidth="97.0" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="4">
                      <padding>
                         <Insets right="50.0" />
                      </padding>
                   </TextField>
+                  <Label fx:id="lblUsuario" text="Label" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </children>
