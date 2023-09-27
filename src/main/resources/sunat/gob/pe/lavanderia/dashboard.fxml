@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -11,9 +12,15 @@
         <fx:include source="menu.fxml" />
         <Pane layoutX="149.0" prefHeight="800.0" prefWidth="1280.0">
             <children>
-                <Label fx:id="lblBienvenido" layoutX="23.0" layoutY="27.0" styleClass="estilosEtiqueta" text="Bienvenido" />
-            <Label layoutX="23.0" layoutY="121.0" text="Entregas Pendientes" />
-            <TableView fx:id="dashboardTablePendientes" layoutX="23.0" layoutY="159.0" prefHeight="200.0" prefWidth="996.0">
+                <Label fx:id="lblBienvenido" layoutX="23.0" layoutY="27.0" styleClass="estilosEtiqueta" text="Bienvenido" textFill="#6f4cbb">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Label>
+            <Label layoutX="23.0" layoutY="74.0" text="Entregas Pendientes" textFill="#6f4cbb">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Label>
+            <TableView fx:id="dashboardTablePendientes" layoutX="23.0" layoutY="108.0" prefHeight="200.0" prefWidth="996.0">
               <columns>
                 <TableColumn fx:id="solicitud" prefWidth="132.0" text="Solicitud" />
                 <TableColumn fx:id="cliente" prefWidth="289.0" text="Cliente" />
@@ -22,8 +29,11 @@
                   <TableColumn fx:id="fecha_entrega" prefWidth="254.0" text="Fecha Entrega" />
               </columns>
             </TableView>
-            <Label layoutX="23.0" layoutY="436.0" text="Clientes Frecuentes" />
-            <TableView fx:id="dashboardTableFrecuentes" layoutX="23.0" layoutY="471.0" prefHeight="200.0" prefWidth="996.0">
+            <Label layoutX="26.0" layoutY="324.0" text="Clientes Frecuentes" textFill="#6f4cbb">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Label>
+            <TableView fx:id="dashboardTableFrecuentes" layoutX="23.0" layoutY="363.0" prefHeight="200.0" prefWidth="996.0">
               <columns>
                 <TableColumn fx:id="cliente_frecuente" prefWidth="174.0" text="Cliente" />
                 <TableColumn fx:id="tipo_documento" minWidth="0.0" prefWidth="135.0" text="Tipo Documento" />
