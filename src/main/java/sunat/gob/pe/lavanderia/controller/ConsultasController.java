@@ -75,7 +75,10 @@ public class ConsultasController implements Initializable {
 
         llenarDatosEnVista();
         enlazarTabla();
-
+        
+        IConsultaDao consultaDao = new ConsultasDAOImpl();
+        consultaData.addAll(consultaDao.listarConsulta(null,null,0,null,0));
+        
         cboTpDocumento.getSelectionModel().selectedItemProperty().addListener((ov, t, t1) -> {
             if (t1 != null) {
                 tipoDocumento = t1.getTpDocumento();
@@ -170,7 +173,7 @@ public class ConsultasController implements Initializable {
 
     private void llenarDatosEnVista() {
         IConsultaDao consultaDao = new ConsultasDAOImpl();
-        //consultaData.addAll(consultaDao.listarConsulta(null,null,0,null));
+        //consultaData.addAll(consultaDao.listarConsulta(null,null,0,null,0));
         //consultaDataDocumentos.addAll(new Documentos("-1", "Seleccione..."));
         consultaDataDocumentos.addAll(consultaDao.listarDocumentos());
         consultaDataPrendas.addAll(consultaDao.listaPrendas());
