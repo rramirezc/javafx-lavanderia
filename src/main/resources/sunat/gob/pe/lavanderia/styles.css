@@ -1,10 +1,52 @@
-#btnDashboard, #btnUsuarios, #btnClientes, #btnSolicitud, #btnHistorial, #btnConsultas{
-    -fx-background-color: darkblue;
-    -fx-text-fill: whitesmoke;
-    -fx-font-weight: bold;
-
+#btnDashboard{
+  -fx-background-color: #D5CBEB;
+  -fx-background-radius: 5;
+  -fx-text-fill: #371897;
+  -fx-border-color: #6F4CBB;
+  -fx-border-radius: 5;
+}
+#btnClientes{
+  -fx-background-color: #D5CBEB;
+  -fx-background-radius: 5;
+  -fx-text-fill: #371897;
+  -fx-border-color: #6F4CBB;
+  -fx-border-radius: 5;
+}
+#btnSolicitud{
+  -fx-background-color: #D5CBEB;
+  -fx-background-radius: 5;
+  -fx-text-fill: #371897;
+  -fx-border-color: #6F4CBB;
+  -fx-border-radius: 5;
+}
+#btnConsultas{
+  -fx-background-color: #D5CBEB;
+  -fx-background-radius: 5;
+  -fx-text-fill: #371897;
+  -fx-border-color: #6F4CBB;
+  -fx-border-radius: 5;
 }
 
+#btnDashboard:hover{
+  -fx-text-fill: #330099;
+  -fx-font-weight: bold;
+  -fx-cursor: hand;
+}
+#btnClientes:hover{
+  -fx-text-fill: #330099;
+  -fx-font-weight: bold;
+  -fx-cursor: hand;
+}
+#btnSolicitud:hover{
+  -fx-text-fill: #330099;
+  -fx-font-weight: bold;
+  -fx-cursor: hand;
+}
+#btnConsultas:hover{
+  -fx-text-fill: #330099;
+  -fx-font-weight: bold;
+  -fx-cursor: hand;
+}
 .estilosEtiqueta{
     -fx-text-fill: darkblue;
 }

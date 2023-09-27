@@ -31,8 +31,7 @@ sexo CHAR(1) NOT NULL,
 telefono VARCHAR(20) NULL,
 email VARCHAR(100) NULL,
 direccion VARCHAR(100) NULL,
-CONSTRAINT cliente_pk PRIMARY KEY (tipo_documento,numero_documento),
-CONSTRAINT tipo_documento_fk FOREIGN KEY (tipo_documento) REFERENCES TIPO_DOCUMENTO(tipo_documento)
+CONSTRAINT cliente_pk PRIMARY KEY (tipo_documento,numero_documento)
 );
 
 CREATE TABLE TIPO_PRENDA(
@@ -58,6 +57,10 @@ CONSTRAINT cliente_fk FOREIGN KEY (tipo_documento,numero_documento) REFERENCES C
 CONSTRAINT usuario_fk FOREIGN KEY (id_usuario) REFERENCES USUARIO(id_usuario),
 CONSTRAINT tipo_prenda_fk FOREIGN KEY (id_tipo_prenda) REFERENCES TIPO_PRENDA(id_tipo_prenda)
 );
+
+
+alter table SOLICITUD add column pendiente char(1) 
+not null default '1' after fecha_entrega;
 
 INSERT INTO TIPO_DOCUMENTO(tipo_documento,descripcion_larga,descripcion_corta)VALUES
 ('01','LIBRETA ELECTORAL O DNI','L.E / DNI'),
