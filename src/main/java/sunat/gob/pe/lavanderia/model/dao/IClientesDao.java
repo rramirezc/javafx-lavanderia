@@ -6,6 +6,7 @@ package sunat.gob.pe.lavanderia.model.dao;
 
 import java.util.List;
 import sunat.gob.pe.lavanderia.model.entities.Clientes;
+import sunat.gob.pe.lavanderia.model.entities.Documentos;
 
 /**
  *
@@ -17,9 +18,10 @@ public interface IClientesDao {
 
     List<Clientes> listarClientes();
 
-    Clientes buscarClientesPorId(String tipo_documento, String numero_documento);
+   // Clientes buscarClientesPorId(String tipo_documento, String numero_documento);
 
-    void actualizarClientes(Clientes clientes);
+   // void actualizarClientes(Clientes clientes);
 
-    void eliminarClientes(String tipo_documento, String numero_documento);
+    //void eliminarClientes(String tipo_documento, String numero_documento);
+    //List<Documentos> listarDocumentos();
 }

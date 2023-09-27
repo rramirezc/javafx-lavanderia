@@ -31,8 +31,7 @@ sexo CHAR(1) NOT NULL,
 telefono VARCHAR(20) NULL,
 email VARCHAR(100) NULL,
 direccion VARCHAR(100) NULL,
-CONSTRAINT cliente_pk PRIMARY KEY (tipo_documento,numero_documento),
-CONSTRAINT tipo_documento_fk FOREIGN KEY (tipo_documento) REFERENCES TIPO_DOCUMENTO(tipo_documento)
+CONSTRAINT cliente_pk PRIMARY KEY (tipo_documento,numero_documento)
 );
 
 CREATE TABLE TIPO_PRENDA(
@@ -75,9 +74,16 @@ INSERT INTO USUARIO(id_usuario,nombres,apellidos,usuario,password,telefono,email
 VALUES
 (0,'Juan Alberto','Perez Gonzales','jperez',aes_encrypt('Clave@125' ,'keyLavadanderia'),'925999999','jperez@lavanderia.com.pe');
 
+ALTER TABLE USUARIO
+ADD CONSTRAINT usuario_unique_email UNIQUE KEY(email);
+
 INSERT INTO USUARIO(id_usuario,nombres,apellidos,usuario,password,telefono,email)
 VALUES
 (0,'Cristhian','Estrada Mori','cestrada',aes_encrypt('123' ,'keyLavadanderia'),'925999999','cestrada@lavanderia.com.pe');
+
+INSERT INTO USUARIO(id_usuario,nombres,apellidos,usuario,password,telefono,email)
+VALUES
+(0,'Olenka','Velarde Vargas','ovelarde',aes_encrypt('1234' ,'keyLavadanderia'),'999999999','ovelarde@lavanderia.com.pe');
 
 
 INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Algodón",100.00);
@@ -91,21 +97,22 @@ INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Acetato, 
 INSERT INTO TIPO_PRENDA (id_tipo_prenda,descripcion,precio) VALUES (0,"Acrílico",900.00);
 
 insert into CLIENTE (tipo_documento,numero_documento,nombres,apellidos,fecha_nacimiento,sexo,telefono,email,direccion)
-values ('01',44508872,'Cristhian','Estrada',STR_TO_DATE('1987-07-17', '%Y-%m-%d'),'M',123456789
+values ('01',44508872,'Cristhian','Estrada',STR_TO_DATE('1987-07-17', '%Y-%m-%d'),'M',123456789,'cestradam@gmail.com','Direccion 1');
 insert into CLIENTE (tipo_documento,numero_documento,nombres,apellidos,fecha_nacimiento,sexo,telefono,email,direccion)
 values ('07',12345678,'Fulano','Mengano',STR_TO_DATE('1987-07-17', '%Y-%m-%d'),'M',123456789,'cestradam@gmail.com','Direccion 1');
 insert into CLIENTE (tipo_documento,numero_documento,nombres,apellidos,fecha_nacimiento,sexo,telefono,email,direccion)
 values ('04',77777777,'Bob','Esponja',STR_TO_DATE('1987-07-17', '%Y-%m-%d'),'M',123456789,'cestradam@gmail.com','Direccion 1');
 
-,'cestradam@gmail.com','Direccion 1');
+
 
 insert into SOLICITUD (id_solicitud,tipo_documento,numero_documento,id_usuario,id_tipo_prenda,cantidad_prendas,peso,precio_total,fecha_solicitud,fecha_entrega)
-Values (0,'01',44508872,2,3,4,100,1200,STR_TO_DATE('2023-08-23', '%Y-%m-%d'),STR_TO_DATE('2023-10-23', '%Y-%m-%d'));
+Values (0,'01',44508872,2,7,4,100,1200,STR_TO_DATE('2023-08-23', '%Y-%m-%d'),STR_TO_DATE('2023-10-23', '%Y-%m-%d'));
 
 insert into SOLICITUD (id_solicitud,tipo_documento,numero_documento,id_usuario,id_tipo_prenda,cantidad_prendas,peso,precio_total,fecha_solicitud,fecha_entrega)
 Values (0,'07',12345678,2,3,6,200,4000,STR_TO_DATE('2023-08-23', '%Y-%m-%d'),STR_TO_DATE('2023-10-23', '%Y-%m-%d'));
 
 insert into SOLICITUD (id_solicitud,tipo_documento,numero_documento,id_usuario,id_tipo_prenda,cantidad_prendas,peso,precio_total,fecha_solicitud,fecha_entrega)
-Values (0,'04',77777777,2,3,11,400,1200,STR_TO_DATE('2023-08-23', '%Y-%m-%d'),STR_TO_DATE('2023-10-23', '%Y-%m-%d'));
+Values (0,'04',77777777,2,10,11,400,1200,STR_TO_DATE('2023-08-23', '%Y-%m-%d'),STR_TO_DATE('2023-10-23', '%Y-%m-%d'));
 
-
+ALTER TABLE USUARIO
+ADD COLUMN estado CHAR(1) NOT NULL DEFAULT '1' AFTER email; -- 0-INACTIVO,1-ACTIVO,2-BLOQUEADO/EN_RECUPERACION,3-BAJA,4-ELIMINADO

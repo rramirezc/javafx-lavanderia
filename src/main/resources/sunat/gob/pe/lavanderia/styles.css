@@ -1,10 +1,142 @@
-#btnDashboard, #btnUsuarios, #btnClientes, #btnSolicitud, #btnHistorial, #btnConsultas{
-    -fx-background-color: darkblue;
-    -fx-text-fill: whitesmoke;
-    -fx-font-weight: bold;
-
+#btnDashboard{
+  -fx-background-color: #D5CBEB;
+  -fx-background-radius: 5;
+  -fx-text-fill: #371897;
+  -fx-border-color: #6F4CBB;
+  -fx-border-radius: 5;
+}
+#btnClientes{
+  -fx-background-color: #D5CBEB;
+  -fx-background-radius: 5;
+  -fx-text-fill: #371897;
+  -fx-border-color: #6F4CBB;
+  -fx-border-radius: 5;
+}
+#btnSolicitud{
+  -fx-background-color: #D5CBEB;
+  -fx-background-radius: 5;
+  -fx-text-fill: #371897;
+  -fx-border-color: #6F4CBB;
+  -fx-border-radius: 5;
+}
+#btnConsultas{
+  -fx-background-color: #D5CBEB;
+  -fx-background-radius: 5;
+  -fx-text-fill: #371897;
+  -fx-border-color: #6F4CBB;
+  -fx-border-radius: 5;
 }
 
+#btnDashboard:hover{
+  -fx-text-fill: #330099;
+  -fx-font-weight: bold;
+  -fx-cursor: hand;
+}
+#btnClientes:hover{
+  -fx-text-fill: #330099;
+  -fx-font-weight: bold;
+  -fx-cursor: hand;
+}
+#btnSolicitud:hover{
+  -fx-text-fill: #330099;
+  -fx-font-weight: bold;
+  -fx-cursor: hand;
+}
+#btnConsultas:hover{
+  -fx-text-fill: #330099;
+  -fx-font-weight: bold;
+  -fx-cursor: hand;
+}
 .estilosEtiqueta{
     -fx-text-fill: darkblue;
+}
+
+.linear-grad{
+  -fx-background-color: linear-gradient(to bottom left, #6F4CBB, #431FA0);
+}
+
+.btnIniciar{
+  -fx-background-color: #6F4CBB;
+  -fx-text-fill: #ffffff;
+}
+
+.btnIniciar:hover{
+  -fx-text-fill: #431FA0;
+  -fx-font-weight: bold;
+  -fx-cursor: hand;
+}
+
+.btnIniciar:pressed{
+  -fx-text-fill: #371897;
+}
+
+.btnIniciar:active{
+  -fx-text-fill: #80AFF5;
+}
+
+.btnClose{
+  -fx-background-color: #D5CBEB;
+  -fx-background-radius: 5;
+  -fx-text-fill: #371897;
+  -fx-border-color: #6F4CBB;
+  -fx-border-radius: 5;
+}
+
+.btnClose:hover{
+  -fx-text-fill: #330099;
+  -fx-font-weight: bold;
+  -fx-cursor: hand;
+}
+
+.btnClose:pressed{
+  -fx-background-color: #D5CBEB;
+  -fx-text-fill: #330099;
+}
+
+.lblRecuperar{
+  -fx-text-fill: #371897;
+}
+
+.anchor {
+  -fx-background-image:url('../../../../imagenes/loading.gif');
+}
+
+.btnBuscar{
+  -fx-background-color: #6F4CBB;
+  -fx-text-fill: #ffffff;
+}
+
+.btnLimpiar{
+  -fx-background-color: #D5CBEB;
+  -fx-background-radius: 5;
+  -fx-text-fill: #371897;
+  -fx-border-color: #6F4CBB;
+  -fx-border-radius: 5;
+}
+
+.btnLimpiar:hover{
+  -fx-text-fill: #330099;
+  -fx-font-weight: bold;
+  -fx-cursor: hand;
+}
+
+.btnLimpiar:pressed{
+  -fx-background-color: #D5CBEB;
+  -fx-text-fill: #330099;
+}
+#btnGuardar{
+  -fx-background-color: #D5CBEB;
+  -fx-background-radius: 5;
+  -fx-text-fill: #371897;
+  -fx-border-color: #6F4CBB;
+  -fx-border-radius: 5;
+}
+#btnGuardar:hover{
+  -fx-text-fill: #330099;
+  -fx-font-weight: bold;
+  -fx-cursor: hand;
+}
+#btnGuardar:pressed{
+  -fx-background-color: #D5CBEB;
+  -fx-text-fill: #330099;
 }

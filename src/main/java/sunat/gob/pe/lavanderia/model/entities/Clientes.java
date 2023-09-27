@@ -21,6 +21,8 @@ public class Clientes {
     private StringProperty numero_documento;
     private StringProperty nombres;
     private StringProperty apellidos;
+    //private StringProperty fecha_nacimiento;
+    private String fecha_nacimiento2;
     private ObjectProperty<Date> fecha_nacimiento;
     private StringProperty sexo;
     private StringProperty telefono;
@@ -35,7 +37,8 @@ public class Clientes {
         this.numero_documento = new SimpleStringProperty(numero_documento);
         this.nombres = new SimpleStringProperty(nombres);
         this.apellidos = new SimpleStringProperty(apellidos);
-        this.fecha_nacimiento = new SimpleObjectProperty<>();
+        this.fecha_nacimiento = new SimpleObjectProperty<>(fecha_nacimiento);
+        //this.fecha_nacimiento = new SimpleStringProperty(fecha_nacimiento);
         this.sexo = new SimpleStringProperty(sexo);
         this.telefono = new SimpleStringProperty(telefono);
         this.email = new SimpleStringProperty(email);
@@ -117,9 +120,16 @@ public class Clientes {
     public ObjectProperty<Date> getFecha_nacimiento1() {
         return fecha_nacimiento;
     }
-
     public void setFecha_nacimiento1(ObjectProperty<Date> fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
+    }
+
+    public String getFecha_nacimiento2() {
+        return fecha_nacimiento2;
+    }
+
+    public void setFecha_nacimiento2(String fecha_nacimiento2) {
+        this.fecha_nacimiento2 = fecha_nacimiento2;
     }
 
     public String getSexo() {

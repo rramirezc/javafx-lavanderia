@@ -22,6 +22,7 @@ import sunat.gob.pe.lavanderia.model.dao.IConsultaDao;
 import sunat.gob.pe.lavanderia.model.dao.impl.ConsultasDAOImpl;
 import sunat.gob.pe.lavanderia.model.entities.Consultas;
 import sunat.gob.pe.lavanderia.model.entities.Documentos;
+import sunat.gob.pe.lavanderia.model.entities.TipoPrendas;
 
 /**
  * FXML Controller class
@@ -55,66 +56,97 @@ public class ConsultasController implements Initializable {
     private TableColumn<Consultas, Double> total;
 
     private ObservableList<Consultas> consultaData = FXCollections.observableArrayList();
-    
+
     private ObservableList<Documentos> consultaDataDocumentos = FXCollections.observableArrayList();
 
+    private ObservableList<TipoPrendas> consultaDataPrendas = FXCollections.observableArrayList();
+    
     @FXML
     private ComboBox<Documentos> cboTpDocumento = new ComboBox<>();
+    
+    @FXML
+    private ComboBox<TipoPrendas> cboTpPrendas = new ComboBox<>();
 
     @FXML
     private TextField txtDocumento, txtSolicitud, txtNombres;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        enlazarTabla();
         llenarDatosEnVista();
+        enlazarTabla();
+
+        cboTpDocumento.getSelectionModel().selectedItemProperty().addListener((ov, t, t1) -> {
+            if (t1 != null) {
+                tipoDocumento = t1.getTpDocumento();
+            }
+        });
+        
+        cboTpPrendas.getSelectionModel().selectedItemProperty().addListener((ov, t, t1) -> {
+            if (t1 != null) {
+                tipoPrenda = t1.getTipPrenda();
+            }
+        });
+
 
     }
-    
+
     String tipoDocumento;
-    
+    int tipoPrenda = 0;
+
     public void buscarSolicitud(ActionEvent event) {
-        
+
         String nombresCompleto = txtNombres.getText();
         String documento = txtDocumento.getText();
         String solicitud = txtSolicitud.getText();
         int nrSolicitud = 0;
-        
-        cboTpDocumento.getSelectionModel().selectedItemProperty().addListener((ov, t, t1) -> {
-            tipoDocumento = t1.getTpDocumento();
-        });
+
         if (!solicitud.isEmpty()) {
             if (!isNumeric(solicitud)) {
                 mostrarAlertas("Warning", "Ingrese solo numeros", Alert.AlertType.WARNING);
                 limpiarTabla();
                 return;
-            }else{
+            } else {
                 nrSolicitud = Integer.parseInt(solicitud);
             }
-        }  
-        
-        if(!documento.isEmpty()){
-            if(tipoDocumento==null || tipoDocumento.equals("-1")){
-                 mostrarAlertas("Warning", "Seleccione el tipo de documento", Alert.AlertType.WARNING);
-                 limpiarTabla();
+        }
+
+        if (!documento.isEmpty()) {
+            if (tipoDocumento == null || tipoDocumento.equals("-1")) {
+                mostrarAlertas("Warning", "Seleccione el tipo de documento", Alert.AlertType.WARNING);
+                limpiarTabla();
                 return;
             }
         }
-        
-        
-        System.err.println(" nombresCompleto :"+nombresCompleto);
-        System.err.println(" documento :"+documento);
-        System.err.println(" solicitud :"+nrSolicitud);
-        System.err.println(" tipoDocumento :"+tipoDocumento);
-        
+
+        System.err.println(" nombresCompleto :" + nombresCompleto);
+        System.err.println(" documento :" + documento);
+        System.err.println(" solicitud :" + nrSolicitud);
+        System.err.println(" tipoDocumento :" + tipoDocumento);
+        System.err.println(" TipoPrenda :" + tipoPrenda);
+
         limpiarTabla();
-        
+
         IConsultaDao consultaDao = new ConsultasDAOImpl();
-        consultaData.addAll(consultaDao.listarConsulta(tipoDocumento,documento,nrSolicitud,nombresCompleto));
-        
+        consultaData.addAll(consultaDao.listarConsulta(tipoDocumento, documento, nrSolicitud, nombresCompleto,tipoPrenda));
+
     }
-    
+
+    public void limpiarConsulta(ActionEvent event) {
+
+        txtNombres.setText("");
+        txtDocumento.setText("");
+        txtSolicitud.setText("");
+        tipoDocumento = null;
+        tipoPrenda = 0;
+        limpiarTabla();
+
+        cboTpDocumento.getItems().clear();
+        cboTpPrendas.getItems().clear();
+        // llenar combo
+        llenarDatosEnVista();
+    }
+
     public static boolean isNumeric(String str) {
         return str.matches("-?\\d+(\\.\\d+)?");
     }
@@ -132,14 +164,17 @@ public class ConsultasController implements Initializable {
 
         // llenar combo
         cboTpDocumento.setItems(consultaDataDocumentos);
+        cboTpPrendas.setItems(consultaDataPrendas);
+
     }
 
     private void llenarDatosEnVista() {
         IConsultaDao consultaDao = new ConsultasDAOImpl();
-        consultaData.addAll(consultaDao.listarConsulta(null,null,0,null));
-        consultaDataDocumentos.addAll(new Documentos("-1", "Seleccione..."));
+        //consultaData.addAll(consultaDao.listarConsulta(null,null,0,null));
+        //consultaDataDocumentos.addAll(new Documentos("-1", "Seleccione..."));
         consultaDataDocumentos.addAll(consultaDao.listarDocumentos());
-        cboTpDocumento.setPromptText("Seleccione...");
+        consultaDataPrendas.addAll(consultaDao.listaPrendas());
+        //cboTpDocumento.setPromptText("Seleccione...");
         cboTpDocumento.setButtonCell(
                 new ListCell<Documentos>() {
             @Override
@@ -174,19 +209,53 @@ public class ConsultasController implements Initializable {
                     return listCell;
                 }
         );
+        
+        cboTpPrendas.setButtonCell(
+                new ListCell<TipoPrendas>() {
+            @Override
+            public void updateItem(TipoPrendas doc, boolean empty
+            ) {
+                super.updateItem(doc, empty);
+                if (doc != null) {
+                    setText(doc.getDescripcion());
+                } else {
+                    setText(null);
+                }
+
+            }
+        }
+        );
+        cboTpPrendas.setCellFactory(
+                (ListView<TipoPrendas> e) -> {
+                    final ListCell<TipoPrendas> listCell = new ListCell<>() {
+
+                @Override
+                public void updateItem(TipoPrendas doc, boolean empty) {
+                    super.updateItem(doc, empty);
+                    if (doc != null) {
+                        setText(doc.getDescripcion());
+
+                    } else {
+                        setText(null);
+                    }
+
+                }
+            };
+                    return listCell;
+                }
+        );
 
     }
-    
-    private void mostrarAlertas(String header, String content, Alert.AlertType type){
-        Alert dialogo = new Alert(type);        
+
+    private void mostrarAlertas(String header, String content, Alert.AlertType type) {
+        Alert dialogo = new Alert(type);
         dialogo.setHeaderText(header);
         dialogo.setContentText(content);
         dialogo.show();
     }
-    
-    private void limpiarTabla(){
+
+    private void limpiarTabla() {
         consultaTable.getItems().clear();
     }
-   
-    
+
 }
