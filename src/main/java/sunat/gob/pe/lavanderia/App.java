@@ -15,8 +15,6 @@ import sunat.gob.pe.lavanderia.model.entities.Usuario;
 public class App extends Application {
 
   public static Scene scene;
-  //public static Stage primaryStage;
-  public Usuario usuario;
 
   @Override
   public void start(Stage stage) {

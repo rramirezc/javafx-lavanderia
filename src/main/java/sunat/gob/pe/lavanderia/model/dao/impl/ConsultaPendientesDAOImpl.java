@@ -30,9 +30,9 @@ public class ConsultaPendientesDAOImpl implements IConsultaPendientesDao {
         List<ConsultaPendientes> listaConsulta = new ArrayList<>();
 
         String sql = "select s.id_solicitud solicitud, CONCAT(c.nombres,\" \",c.apellidos) cliente,tp.descripcion prenda, s.cantidad_prendas cantidad_prendas, s.fecha_entrega fecha_entrega"
-                + " from solicitud s"
-                + " inner join cliente c on s.numero_documento = c.numero_documento"
-                + " inner join tipo_prenda tp on s.id_tipo_prenda = tp.id_tipo_prenda"
+                + " from SOLICITUD s"
+                + " inner join CLIENTE c on s.numero_documento = c.numero_documento"
+                + " inner join TIPO_PRENDA tp on s.id_tipo_prenda = tp.id_tipo_prenda"
                 + " where s.pendiente = '1'"
                 + " order by s.fecha_entrega";
 

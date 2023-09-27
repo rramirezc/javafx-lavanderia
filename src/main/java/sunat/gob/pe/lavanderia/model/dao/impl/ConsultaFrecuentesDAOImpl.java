@@ -34,10 +34,10 @@ public class ConsultaFrecuentesDAOImpl implements IConsultaFrecuentesDao {
         String sql = " select CONCAT(c.nombres,\" \",c.apellidos) cliente, c.tipo_documento,frec.numero_documento nro_documento, c.fecha_nacimiento fecha_nacimiento,"
                 + " c.telefono telefono, c.email correo, frec.visitas visitas"
                 + " from (select s.numero_documento numero_documento,count(s.numero_documento) visitas"
-                + " from solicitud s"
+                + " from SOLICITUD s"
                 + " group by s.numero_documento"
                 + " order by visitas desc) frec"
-                + " inner join cliente c on frec.numero_documento = c.numero_documento"
+                + " inner join CLIENTE c on frec.numero_documento = c.numero_documento"
                 + " order by frec.visitas desc"
                 + " limit 2";
 

@@ -79,6 +79,7 @@ public class LoginController implements Initializable {
   private PasswordField txtPasswordNuevoRep;
   
   private Usuario usuarioLogin=null;
+  private String nombres = "";
   
 
   @FXML
@@ -89,10 +90,9 @@ public class LoginController implements Initializable {
       Parent dashboard = loader.load();
       App.scene.setRoot(dashboard);
       DashboardController dashboardController = loader.<DashboardController>getController();
-      dashboardController.setMensaje(txtUsuario.getText());
+      dashboardController.setMensaje(nombres);
       App.scene.getStylesheets().add(App.class.getResource("styles.css").toExternalForm());
       Dimensiones.redimensionar(App.scene);
-      
     }
 
   }
@@ -116,6 +116,7 @@ public class LoginController implements Initializable {
       mostrarAlertas("Datos Incorrectos", "Usuario y/o Password Incorrectos", Alert.AlertType.ERROR);
       return false;
     }else{
+      nombres = resultado.getNombres();
       if(String.valueOf(EstadoEnum.BLOQUEADO.getValor()).equals(resultado.getEstado())){
         resultado.setPassword(txtPassword.getText());
         System.out.println("Actualizar Contraseña");
