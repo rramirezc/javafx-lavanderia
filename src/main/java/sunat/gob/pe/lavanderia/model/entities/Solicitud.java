@@ -21,11 +21,11 @@ public final class Solicitud implements Serializable{
         setTipoCambio(tipoCambio);
     }
 
-    public int getTipoDocumento() {
+    public String getTipoDocumento() {
         return tipoDocumento;
     }
 
-    public void setTipoDocumento(int tipoDocumento) {
+    public void setTipoDocumento(String tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
     }
 
@@ -93,7 +93,7 @@ public final class Solicitud implements Serializable{
     public void setFechaEntrega(Date fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
-    int tipoDocumento;
+    String tipoDocumento;
     String numeroDocumento;
     int tipoPrenda;
     int cantidad;
@@ -112,7 +112,7 @@ public final class Solicitud implements Serializable{
         this.tipoCambio = tipoCambio;
     }
     
-    public Solicitud(int tipoDocumento, String numeroDocumento,
+    public Solicitud(String tipoDocumento, String numeroDocumento,
             int tipoPrenda, int cantidad, double peso, double precioSoles,
             double tipoCambio){
         

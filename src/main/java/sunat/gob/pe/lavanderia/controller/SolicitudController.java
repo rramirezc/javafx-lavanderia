@@ -158,7 +158,7 @@ public class SolicitudController implements Initializable {
                 return false;
         }
         
-        if(validarClientes(valorTipoDocumento.getTpDocumento(), txtNumeroDocumento.getText())){
+        if(!validarClientes(valorTipoDocumento.getTpDocumento(), txtNumeroDocumento.getText())){
             mostrarAlertas("Registro de solicitud", "Es necesario que registre al cliente para continuar la solicitud.", Alert.AlertType.INFORMATION);
                 return false;
         }
@@ -188,11 +188,7 @@ public class SolicitudController implements Initializable {
                 return false;
         }
         
-        
-        
         return true;
-        
-
     }
     
     public void registrarSolicitud(ActionEvent event) {
@@ -201,7 +197,7 @@ public class SolicitudController implements Initializable {
         ISolicitudDAO solicitudDao = new SolicitudDAOImpl();
         
         if(validarDatos()){
-            solicitud.setTipoDocumento(Integer.valueOf(cmbTipoDocumento.getSelectionModel().getSelectedItem().getTpDocumento()));
+            solicitud.setTipoDocumento(cmbTipoDocumento.getSelectionModel().getSelectedItem().getTpDocumento());
             solicitud.setNumeroDocumento(txtNumeroDocumento.getText());
             solicitud.setTipoPrenda(cmbTipoPrenda.getSelectionModel().getSelectedItem().getTipPrenda());
             solicitud.setCantidad(Integer.valueOf(txtCantidad.getText()));
@@ -213,6 +209,7 @@ public class SolicitudController implements Initializable {
             Date fechaEntrega = Date.from(instant);
             solicitud.setFechaEntrega(fechaEntrega);
             solicitudDao.registrarSolicitud(solicitud);
+            mostrarAlertas("Registro de solicitud", "La solicitud se registró satisfactoriamente", Alert.AlertType.INFORMATION);
         }
     }
     
@@ -221,8 +218,7 @@ public class SolicitudController implements Initializable {
         Clientes cliente = null;
         IClientesDao clientesDAO = new ClientesDaoImpl();
         cliente = clientesDAO.buscarClientesPorId(tipoDocumento, numeroDocumento);
-        //System.out.println("Tipo: "+cliente.getTipo_documento());
-        //System.out.println("Documento: "+cliente.getNumero_documento());
+        
         if(cliente!=null) existe = true;
         return existe;
     }
@@ -234,4 +230,14 @@ public class SolicitudController implements Initializable {
         dialogo.show();
     }
     
+    public void limpiarFormulario(ActionEvent event){
+        cmbTipoDocumento.getSelectionModel().select(0);
+        txtNumeroDocumento.setText("");
+        cmbTipoPrenda.getSelectionModel().select(0);
+        txtCantidad.setText("");
+        txtPeso.setText("");
+        txtPrecio.setText("");
+        txtFechaEntrega.getEditor().setText("");
+        
+    }
 }

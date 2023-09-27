@@ -11,7 +11,7 @@
 <AnchorPane id="AnchorPane" prefHeight="432.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sunat.gob.pe.lavanderia.controller.SolicitudController">
     <children>
         <fx:include source="menu.fxml" />
-        <Pane layoutX="154.0" layoutY="4.0" prefHeight="432.0" prefWidth="953.0">
+        <Pane layoutX="154.0" layoutY="4.0" prefHeight="432.0" prefWidth="734.0">
          <children>
             <GridPane layoutX="6.0" layoutY="11.0" prefHeight="411.0" prefWidth="776.0">
               <columnConstraints>
@@ -20,8 +20,6 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="4.0" prefWidth="9.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="151.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="135.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0" prefWidth="97.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="10.0" prefWidth="18.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="10.0" prefWidth="39.0" />
               </columnConstraints>
               <rowConstraints>
@@ -41,8 +39,7 @@
                <children>
                   <Label fx:id="lblBienvenida" text="Bienvenido" GridPane.halignment="CENTER" />
                   <Button fx:id="btnRegistrar" mnemonicParsing="false" onAction="#registrarSolicitud" text="Registrar" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="10" />
-                  <Button mnemonicParsing="false" text="Limpiar" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-                  <Button mnemonicParsing="false" text="Cancelar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                  <Button mnemonicParsing="false" onAction="#limpiarFormulario" text="Limpiar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
                   <Label text="Tipo documento" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                   <Label prefHeight="34.0" prefWidth="138.0" text="Número documento" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
                   <ComboBox fx:id="cmbTipoDocumento" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -79,7 +76,6 @@
                         <Insets right="50.0" />
                      </padding>
                   </TextField>
-                  <Label fx:id="lblUsuario" text="Label" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </children>

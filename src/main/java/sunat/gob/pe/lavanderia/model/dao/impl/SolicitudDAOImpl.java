@@ -32,7 +32,7 @@ public class SolicitudDAOImpl implements ISolicitudDAO{
                     + "cantidad_prendas, peso, precio_total, fecha_solicitud, fecha_entrega) "
                     + " VALUES(?,?,?,?,?,?,?,?,?)";
             pstmt = connection.prepareStatement(insertSql);
-            pstmt.setInt(1, solicitud.getTipoDocumento());
+            pstmt.setString(1, solicitud.getTipoDocumento());
             pstmt.setString(2, solicitud.getNumeroDocumento());
             pstmt.setInt(3, 2);
             pstmt.setInt(4, solicitud.getTipoPrenda());
@@ -41,6 +41,7 @@ public class SolicitudDAOImpl implements ISolicitudDAO{
             pstmt.setDouble(7, solicitud.getPrecioSoles());
             pstmt.setDate(8, new Date (solicitud.getFechaSolicitud().getTime()));
             pstmt.setDate(9, new Date(solicitud.getFechaEntrega().getTime()));
+            System.out.println(pstmt.getParameterMetaData().toString());
             pstmt.executeUpdate();
 
         } catch (SQLException se) {

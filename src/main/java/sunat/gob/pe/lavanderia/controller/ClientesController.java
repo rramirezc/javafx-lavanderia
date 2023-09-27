@@ -210,18 +210,18 @@ public class ClientesController implements Initializable {
     }
 
     public void guardarClientes(ActionEvent event) {
-
-        if (clientesActual.getTipo_documento() == "") {
-            if (clientesActual.getNombres().isEmpty()) {
+        
+        Documentos valorTipoDocumento = cmbTipoDocumento.getSelectionModel().getSelectedItem();
+        if("-1".equals(valorTipoDocumento.getTpDocumento())){ 
+                mostrarAlertas("Registro de cliente", "Debe seleccionar el tipo de documento.", Alert.AlertType.WARNING);
+                    return;
+        }else clientesActual.setTipo_documento(valorTipoDocumento.getTpDocumento());
+        if (clientesActual.getNombres().isEmpty()) {
                 mostrarAlertas("Warning", "Ingrese nombres", Alert.AlertType.WARNING);
-                //limpiarTabla();
+                
                 return;
             }
-            //if (clientesActual.getFecha_nacimiento().isEmpty()) {
-              //  mostrarAlertas("Warning", "Ingrese fecha de nacimiento", Alert.AlertType.WARNING);
-                //limpiarTabla();
-                //return;
-            //}
+            
             if (clientesActual.getApellidos().isEmpty()) {
                 mostrarAlertas("Warning", "Ingrese Apellidos", Alert.AlertType.WARNING);
 
@@ -250,7 +250,7 @@ public class ClientesController implements Initializable {
             limpiarTabla();
             llenarDatosEnTabla();
             
-        }
+        
     }
 
     private void mostrarAlertas(String header, String content, Alert.AlertType type) {
