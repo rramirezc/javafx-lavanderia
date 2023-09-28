@@ -28,7 +28,7 @@ public class SolicitudDAOImpl implements ISolicitudDAO{
         
         try {
             connection = ConnectionPoolMySQL.getInstance().getConnection();
-            String insertSql = "Insert into solicitud(tipo_documento, numero_documento, id_usuario, id_tipo_prenda, "
+            String insertSql = "Insert into SOLICITUD(tipo_documento, numero_documento, id_usuario, id_tipo_prenda, "
                     + "cantidad_prendas, peso, precio_total, fecha_solicitud, fecha_entrega) "
                     + " VALUES(?,?,?,?,?,?,?,?,?)";
             pstmt = connection.prepareStatement(insertSql);

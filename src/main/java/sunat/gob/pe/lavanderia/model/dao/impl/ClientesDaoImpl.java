@@ -125,7 +125,7 @@ public class ClientesDaoImpl implements IClientesDao {
         try {
             conn = ConnectionPoolMySQL.getInstance().getConnection();
             String sql = "Select tipo_documento, numero_documento, nombres, apellidos, "
-                    + "fecha_nacimiento,sexo, telefono, email, direccion from Cliente where tipo_documento = ? and numero_documento = ?";
+                    + "fecha_nacimiento,sexo, telefono, email, direccion from CLIENTE where tipo_documento = ? and numero_documento = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, tipo_documento);
             pstmt.setString(2, numero_documento);

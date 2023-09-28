@@ -223,8 +223,9 @@ public class LoginController implements Initializable {
           if (send) {
             mostrarAlertas("Envio de Correo Correcto", "Revise su bandeja de correo electronico", Alert.AlertType.CONFIRMATION);
             txtEmail.setText("");
+            txtPassword.setText("");
             pnlFormSesion.toFront();
-            txtUsuario.requestFocus();
+            txtPassword.requestFocus();
           } else {
             mostrarAlertas("Error", "Ocurrio un error en el envio de correo", Alert.AlertType.ERROR);
           }
